@@ -1,0 +1,7 @@
+.news-blog {
+    display: grid;
+    padding: 0;
+    margin: 20px 0;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}

@@ -1,0 +1,30 @@
+@import '@variables';
+
+$mr: adaptiveSize(100, 50);
+
+.skeleton {
+    padding-top: 20px;
+    margin-bottom: $mr;
+}
+
+.header {
+    display: flex;
+    margin-bottom: adaptiveSize(50, 25);
+    gap: adaptiveSize(100, 10);
+
+    section {
+        display: flex;
+        width: 100%;
+        max-width: 300px;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+}

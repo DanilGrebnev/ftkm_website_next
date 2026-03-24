@@ -1,0 +1,8 @@
+@import '@variables';
+.InfoVideo {
+    h2 {
+        @include mr-t-b;
+        @include font-42;
+        text-align: center;
+    }
+}

@@ -1,0 +1,17 @@
+@import '@variables';
+
+.list {
+    h3 {
+        @include font-24;
+        @include custom-mr-t-b(20);
+        text-align: start;
+    }
+
+    li {
+        @include font-18;
+        @include mr-left-50;
+
+        line-height: 2.5;
+        list-style: disc;
+    }
+}

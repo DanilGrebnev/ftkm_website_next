@@ -1,0 +1,26 @@
+@import '@variables';
+
+.container {
+    align-items: center;
+    padding-top: 2em;
+    padding-bottom: adaptiveSize(100, 20);
+
+    h1 {
+        margin-bottom: adaptiveSize(50, 25);
+        font-size: adaptiveSize(24, 20);
+        font-weight: bold;
+        text-align: center;
+    }
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 2em;
+    gap: 20px;
+
+    h4 {
+        margin-bottom: 10px;
+    }
+}

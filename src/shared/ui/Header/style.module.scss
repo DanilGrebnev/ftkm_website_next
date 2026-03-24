@@ -1,0 +1,47 @@
+@import '@variables';
+
+.headerWrapper {
+    position: relative;
+}
+
+.Header {
+    background: $main-blue !important;
+}
+
+.Header {
+    a {
+        .Btn {
+            color: $header-link-color;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    }
+}
+
+.vstuIcon {
+    img {
+        max-width: 150px;
+    }
+}
+
+.box {
+    justify-content: center;
+}
+
+.burger-menu {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .vstuIcon {
+        flex-grow: 1;
+    }
+
+    .Box2 {
+        display: none !important;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+}

@@ -1,0 +1,38 @@
+@import '@variables';
+
+.ScientificDirection {
+    b {
+        font-weight: normal;
+    }
+    h2 {
+        @include mr-t-b;
+        @include font-42;
+    }
+
+    h3 {
+        @include font-24;
+        @include custom-mr-t-b(20);
+        text-align: start;
+    }
+
+    li {
+        @include font-22;
+        @include mr-left-50;
+
+        line-height: 2;
+        list-style: disc;
+    }
+}
+
+.results {
+    margin-top: 1em;
+    @include font-22;
+    text-align: justify;
+    line-height: 2;
+
+    font-weight: 600;
+
+    &:before {
+        @include redLine;
+    }
+}

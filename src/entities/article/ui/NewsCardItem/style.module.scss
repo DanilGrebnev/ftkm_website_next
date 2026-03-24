@@ -1,0 +1,78 @@
+@import '@variables';
+
+$pb: 20px;
+
+.cardContainer {
+    height: 100%;
+    max-height: 500px;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    @include br-rd;
+    transition: 0.3s;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.01);
+        @include box-sh;
+    }
+}
+
+.wrapper {
+    max-height: 100%;
+    overflow: hidden;
+    & > * {
+        margin-bottom: 10px;
+    }
+}
+
+.files {
+    display: flex;
+    width: 100%;
+    min-height: 20px;
+    overflow-x: hidden;
+
+    img {
+        width: 20px;
+    }
+}
+
+.title {
+    @include font-16;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-transform: uppercase;
+    max-height: 120px;
+    overflow-y: hidden;
+}
+
+.date,
+.body {
+    font-weight: 500;
+}
+
+.date {
+    @include font-16;
+    color: $text-secondary;
+}
+
+.body {
+    @include font-16;
+    color: $text-secondary;
+    text-align: justify;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-y: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 666px) {
+    .cardContainer {
+        height: fit-content;
+    }
+}

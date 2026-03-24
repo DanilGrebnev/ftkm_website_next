@@ -1,0 +1,49 @@
+@import '@variables';
+
+.news_container {
+    display: flex !important;
+    flex-direction: column;
+    border-radius: 1em;
+    margin-top: 20px;
+    gap: 20px;
+    @include pd-t-b;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    @include font-30;
+    text-transform: uppercase;
+}
+
+.news-body {
+    @include font-20;
+    text-align: justify;
+    hyphens: auto;
+    min-height: max-content;
+    color: black;
+
+    p:first-child {
+        &::before {
+            @include redLine;
+        }
+    }
+}
+
+.news-date {
+    @include font-20;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+}
+
+.back{
+    align-self: center;
+}
+
+.btn {
+    width: fit-content;
+
+    a {
+        width: fit-content;
+    }
+}

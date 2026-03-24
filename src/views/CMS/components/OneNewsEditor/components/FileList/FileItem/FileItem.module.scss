@@ -1,0 +1,34 @@
+@import '@variables';
+
+.FileItem {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: adaptiveSize(20, 10);
+    align-items: center;
+}
+
+.icon {
+    height: 30px;
+}
+
+.download-button,
+.delete-button {
+    outline: none;
+    border: none;
+    background: transparent;
+    @include font-14;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: adaptiveSize(10, 5);
+    cursor: pointer;
+}
+
+.download-button {
+    color: green;
+}
+
+.delete-button {
+    color: red;
+}

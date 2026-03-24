@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-grow: 1;
+
+    justify-content: flex-end;
+}
+
+.btn {
+    a {
+        width: fit-content;
+        color: var(--global-palette-1);
+    }
+}

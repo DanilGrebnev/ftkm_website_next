@@ -1,0 +1,36 @@
+.EditorContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+.previewImg {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 16 / 9;
+}
+
+.input {
+    max-width: 1000px;
+}
+
+.textarea {
+    max-width: 1000px;
+}
+
+.fileInfo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.selectBtn {
+    width: max-content;
+    padding: 5px;
+    border: 2px solid black;
+}
+
+.EditorContainer button {
+    width: max-content;
+}

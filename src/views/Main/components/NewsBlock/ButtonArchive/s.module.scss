@@ -1,0 +1,14 @@
+@import '@variables';
+
+.ButtonArchive {
+    display: block;
+    margin-top: adaptiveSize(50, 25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    width: fit-content;
+    color: var(--global-palette-2) !important;
+}

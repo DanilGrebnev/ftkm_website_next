@@ -1,0 +1,42 @@
+.BurgerIcon-enter {
+    span:first-child {
+        top: 50%;
+    }
+    span:last-child {
+        top: 50%;
+    }
+}
+
+.BurgerIcon-enter-done {
+    span:first-child {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    span:last-child {
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+    }
+}
+
+.BurgerIcon-exit {
+    span:first-child {
+        top: 50%;
+        transform: translateY(-50%) rotate(0);
+    }
+
+    span:last-child {
+        top: 50%;
+        transform: translateY(-50%) rotate(0);
+    }
+}
+
+.BurgerIcon-exit-done {
+    span:first-child {
+        top: 0;
+    }
+
+    span:last-child {
+        bottom: 0;
+    }
+}

@@ -1,0 +1,21 @@
+@import '@variables';
+
+.title {
+    @include font-42;
+    margin-bottom: adaptiveSize(100, 50);
+}
+
+.img-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+}
+
+.img {
+    height: 100%;
+    object-fit: contain;
+    object-position: 50% 50%;
+    @include br-rd;
+    @include centering;
+    border-radius: 10px;
+}

@@ -1,0 +1,29 @@
+.markdown {
+    font-size: inherit !important;
+}
+
+.BodyInput {
+    display: flex;
+    justify-items: stretch;
+    gap: 30px;
+}
+
+.editor {
+    max-width: 50%;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.preview {
+    max-width: 50%;
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+
+    h3 {
+        text-align: center;
+
+        border-bottom: 1px solid #ced4da;
+    }
+}

@@ -1,0 +1,12 @@
+@import '@variables';
+
+.WorkingMode {
+    div {
+        display: flex;
+        gap: 15px;
+    }
+
+    a {
+        color: $mui-blue;
+    }
+}

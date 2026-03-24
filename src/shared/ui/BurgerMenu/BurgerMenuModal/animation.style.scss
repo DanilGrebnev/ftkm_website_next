@@ -1,0 +1,15 @@
+.modal-enter {
+    height: 0;
+}
+
+.modal-enter-done {
+    height: 100vh;
+}
+
+.modal-exit {
+    height: 100vh;
+}
+
+.modal-exit-done {
+    height: 0;
+}

@@ -1,0 +1,27 @@
+@import '@variables';
+.container {
+    line-height: 1.5;
+    text-align: center;
+    @include mr-t-b;
+
+    h1 {
+        @include font-42;
+    }
+
+    h3 {
+        @include font-24;
+        @include mr-sub;
+        text-align: center;
+    }
+
+    ol {
+        @include font-22;
+        display: inline-block;
+        align-items: center;
+    }
+
+    li {
+        line-height: 2;
+        text-align: start;
+    }
+}

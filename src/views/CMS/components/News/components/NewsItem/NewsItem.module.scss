@@ -1,0 +1,26 @@
+@import '@variables';
+
+.newsItem {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border-radius: 4px;
+    gap: 10px;
+    scroll-snap-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+
+    h1 {
+        @include font-16;
+        display: flex;
+        max-height: 60px;
+        align-items: center;
+        overflow-y: auto;
+    }
+}
+
+.btnGroup {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: flex-end;
+}

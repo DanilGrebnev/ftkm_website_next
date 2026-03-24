@@ -1,0 +1,80 @@
+@import '@variables';
+
+.admission {
+    @include mr-t-b;
+    @include pd-t-b;
+
+    position: relative;
+
+    h2 {
+        @include font-42;
+        margin-bottom: adaptiveSize(100, 50);
+        grid-column: 1/4;
+    }
+
+    h3 {
+        @include font-22;
+        text-align: center;
+    }
+}
+
+.admission-content {
+    display: grid;
+    justify-items: center;
+    row-gap: adaptiveSize(40, 10);
+    grid-template-columns: repeat(4, 1fr);
+
+    grid-template-areas:
+        'title1 title2 title3 title3'
+        'circle1 circle2 circle3 circle4';
+}
+
+@media screen and (max-width: 500px) {
+    .admission-content {
+        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-areas:
+            'title1 title2'
+            'circle1 circle2'
+            'title3 title3'
+            'circle3 circle4';
+    }
+}
+
+.title {
+    &1 {
+        grid-area: title1;
+    }
+    &2 {
+        grid-area: title2;
+    }
+    &3 {
+        grid-area: title3;
+    }
+}
+
+.circle {
+    &1 {
+        grid-area: circle1;
+    }
+    &2 {
+        grid-area: circle2;
+    }
+    &3 {
+        grid-area: circle3;
+    }
+    &4 {
+        grid-area: circle4;
+    }
+}
+
+.footer-text {
+    @include font-24;
+    @include centering;
+    width: fit-content;
+    margin-top: adaptiveSize(50, 20);
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid $main-blue;
+}

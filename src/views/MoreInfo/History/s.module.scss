@@ -1,0 +1,22 @@
+@import '@variables';
+
+.History {
+    h2 {
+        @include font-30;
+        margin-bottom: adaptiveSize(20, 10);
+        font-weight: bold;
+        text-align: start;
+    }
+    b {
+        font-weight: normal;
+    }
+    p {
+        @include font-20;
+    }
+
+    p:before {
+        @include redLine;
+    }
+
+    margin-bottom: 100px;
+}

@@ -1,0 +1,9 @@
+@import '@variables';
+
+.FileList {
+    h3 {
+        font-weight: normal;
+        opacity: 0.8;
+        @include font-16;
+    }
+}

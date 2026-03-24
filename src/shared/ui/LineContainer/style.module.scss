@@ -1,0 +1,24 @@
+@import '@variables';
+
+.LineContainer {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 1524px;
+    justify-content: center;
+    padding: adaptiveSize(50, 25) 0;
+    margin: adaptiveSize(40, 20) auto !important;
+}
+
+.LineContainer:before,
+.LineContainer:after {
+    @include decor-lines($main-blue);
+}
+
+.LineContainer:before {
+    top: 0;
+}
+
+.LineContainer:after {
+    bottom: 0;
+}

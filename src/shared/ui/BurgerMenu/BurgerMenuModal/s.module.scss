@@ -1,0 +1,52 @@
+@import '@variables';
+
+.modal {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100vw;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    transition: 0.5s;
+}
+
+.modal nav {
+    display: flex;
+    width: 85%;
+    flex-direction: column;
+}
+
+.modal a {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid black;
+    color: black;
+    transition: 0.3s;
+}
+
+.modal a:hover {
+    font-weight: 600;
+    transform: scale(1.01);
+}
+
+.modal a:first-child {
+    margin-top: 10px;
+}
+
+.modal a:last-child {
+    border-bottom: none;
+}
+
+.bottomLine {
+    position: absolute;
+    bottom: 10vh;
+    width: 30%;
+    height: 5px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}

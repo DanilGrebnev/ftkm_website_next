@@ -1,0 +1,9 @@
+@import '@variables';
+
+.TextContent {
+    @include font-20;
+
+    strong {
+        margin-right: 5px;
+    }
+}

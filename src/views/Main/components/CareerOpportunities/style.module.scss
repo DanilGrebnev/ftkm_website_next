@@ -1,0 +1,57 @@
+@import '@variables';
+
+.Career {
+    grid-gap: adaptiveSize(40, 20) adaptiveSize(50, 25);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+
+    @include mr-t-b;
+    @include pd-t-b;
+
+    .title {
+        text-align: center;
+        @include font-42;
+        @include h2-title-mr-b;
+    }
+
+    .subtitle {
+        margin-bottom: 10px;
+        @include font-24;
+        text-align: start;
+        font-weight: bold;
+    }
+
+    .title ,
+    .button{
+        grid-column: 1/4;
+    }
+
+    li {
+        hyphens: auto;
+        @include font-22;
+        text-align: justify;
+        font-weight: normal;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 1px;
+            margin-right: 5px;
+            margin-bottom: 4px;
+            background: black;
+        }
+
+        &.none-decoration::before {
+            background: transparent;
+        }
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .Career {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

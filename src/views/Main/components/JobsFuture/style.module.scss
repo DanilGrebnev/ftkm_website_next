@@ -1,0 +1,11 @@
+@import '@variables';
+
+.button {
+    border: none;
+    border-radius: 50%;
+    background: $main-blue;
+    
+    a {
+        color: white;
+    }
+}

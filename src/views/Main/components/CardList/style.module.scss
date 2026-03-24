@@ -1,0 +1,50 @@
+@import '@variables';
+
+.LineContainer {
+    @include mr-t-b;
+}
+
+.CardList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-family: Montserrat;
+    gap: 20px;
+
+    a {
+        display: flex;
+        max-width: fit-content;
+        align-items: center;
+        gap: 20px;
+        img {
+            width: 82px;
+            height: 75px;
+        }
+    }
+    p {
+        max-width: 200px;
+        font-size: 20px;
+        line-height: 1;
+    }
+    a:nth-child(4) {
+        p {
+            font-size: 16px;
+
+            span {
+                display: inline-block;
+                margin-top: 5px;
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 1;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1306px) {
+    .CardList {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+        justify-items: center;
+    }
+}

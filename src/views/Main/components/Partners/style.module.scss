@@ -1,0 +1,14 @@
+@import '@variables';
+
+.Partners {
+    @include mr-t-b;
+
+    h2 {
+        @include font-42;
+    }
+
+    h3 {
+        @include font-24;
+        @include mr-sub;
+    }
+}

@@ -1,0 +1,19 @@
+.NewsContainer {
+    position: relative;
+    padding-top: 20px;
+}
+
+.loadingBlock {
+    height: 50px;
+}
+
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 900px) {
+    .news-blog {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}

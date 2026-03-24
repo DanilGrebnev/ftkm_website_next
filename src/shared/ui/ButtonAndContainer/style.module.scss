@@ -1,0 +1,24 @@
+@import '@variables';
+
+.ButtonAndContainer {
+    @include mr-t-b;
+}
+
+.button {
+    cursor: pointer;
+    padding: adaptiveSize(20, 10) adaptiveSize(80, 40);
+    border-width: 2px !important;
+    border-color: black !important;
+    border-radius: 30px !important;
+    background: white;
+    font-weight: bold;
+    outline: none;
+    @include font-26;
+    color: black;
+}
+
+.LineContainer {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 auto;
+}

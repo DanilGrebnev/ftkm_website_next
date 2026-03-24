@@ -1,0 +1,116 @@
+$main-blue: var(--global-palette-1);
+
+$mui-blue: var(--global-palette-2);
+
+$header-link-color: var(--global-palette-3);
+
+$color-w: var(--global-palette-4);
+
+$border: 1px solid black;
+
+$footer-bg: var(--global-palette-5);
+
+$text-secondary: rgba(0, 0, 0, 0.6);
+
+$mr-pd: 50px;
+
+$pt: 20px;
+
+$pb: 20px;
+
+$maxWidth: var(--maxWidth);
+
+/*
+    функция принимает 2 параметра: 
+    размер при разрешении 1920px
+    и размер при 320px
+*/
+@function adaptiveSize($pcSize, $mobSize) {
+    @return calc(
+        #{$mobSize + px} + (#{$pcSize} - #{$mobSize}) * (100vw - 320px) / (#{$maxWidth} -
+                    320)
+    );
+}
+
+@mixin Roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+//Красная строка. Добавляется в
+//Псевдоэлемент ::before
+@mixin redLine {
+    display: inline-block;
+    width: adaptiveSize(40, 15);
+    content: '';
+}
+
+@mixin decor-lines($color: black) {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 95%;
+    height: 3px;
+    border-radius: 50%;
+    background: $color;
+    transform: translateX(-50%);
+}
+
+@mixin adaptiv-font($pcSize, $mobSize) {
+    font-size: adaptiveSize($pcSize, $mobSize);
+}
+
+@mixin custom-mr-t-b($pcSize: 50, $mobSize: $pcSize / 2) {
+    margin: adaptiveSize($pcSize, $mobSize) 0;
+}
+
+@mixin object-fit {
+    object-fit: cover;
+}
+
+@mixin br-rd {
+    border-radius: 4px;
+}
+
+@mixin border {
+    border-top: $border;
+    border-bottom: $border;
+}
+
+@mixin mr-t-b {
+    margin: adaptiveSize(100, 50) auto;
+}
+
+@mixin mr-t-b-20 {
+    margin: adaptiveSize(20, 10) auto;
+}
+
+@mixin h2-title-mr-b {
+    margin-bottom: adaptiveSize(40, 20);
+}
+
+@mixin mr-left-50 {
+    margin-left: adaptiveSize(50, 25);
+}
+
+@mixin pd-t-b {
+    $size: adaptiveSize(20, 10);
+    padding-top: $size;
+    padding-bottom: $size;
+}
+
+@mixin mr-sub {
+    $size: adaptiveSize(50, 25);
+    margin-top: $size;
+    margin-bottom: $size;
+}
+
+@mixin centering {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*--------------fonts-----------------*/
+@import 'fonts';
+
+/*--------------CMS-----------------*/
+@import 'cms';

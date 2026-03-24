@@ -1,0 +1,25 @@
+@import '@variables';
+
+.CMS {
+    width: 100%;
+    max-width: 100vw;
+    height: 100vh;
+}
+
+.block {
+    width: 98vw;
+    height: 95vh;
+    padding: 20px;
+    overflow-y: hidden;
+    @include cms-br;
+}
+
+.modalRoot {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid black;
+}

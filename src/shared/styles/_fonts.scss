@@ -1,0 +1,55 @@
+@mixin font-12 {
+    @include adaptiv-font(12, 7);
+}
+
+@mixin font-14 {
+    @include adaptiv-font(14, 9);
+}
+
+@mixin font-16 {
+    @include adaptiv-font(16, 10);
+}
+
+@mixin font-18 {
+    @include adaptiv-font(18, 12);
+}
+
+@mixin font-20 {
+    @include adaptiv-font(20, 12);
+}
+
+@mixin font-22 {
+    @include adaptiv-font(22, 12);
+}
+
+@mixin font-24 {
+    @include adaptiv-font(24, 14);
+    font-weight: 500;
+    text-align: center;
+}
+
+@mixin font-26 {
+    @include adaptiv-font(26, 13);
+}
+
+@mixin font-30 {
+    @include adaptiv-font(30, 15);
+}
+
+@mixin font-32 {
+    @include adaptiv-font(32, 16);
+}
+
+@mixin font-40 {
+    @include adaptiv-font(40, 20);
+    text-align: center;
+}
+
+@mixin font-42 {
+    @include adaptiv-font(42, 21);
+    text-align: center;
+}
+
+@mixin font-64 {
+    @include adaptiv-font(64, 32);
+}

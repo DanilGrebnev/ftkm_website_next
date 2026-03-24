@@ -1,0 +1,69 @@
+'use client'
+
+import { createNews, updateNews } from '@/entities/article/model/server_actions/news'
+import { useNewsEditorStore } from '@/entities/article/model/store/useNewsEditorStore'
+import { useNewsListStore } from '@/entities/article/model/store/useNewsListStore'
+import { IBody } from '@/entities/article/model/server_actions/types/News'
+import { useRouter } from 'next/navigation'
+
+interface IEditNews {
+    body: IBody
+    _id: string
+}
+
+export const useSendNews = () => {
+    const router = useRouter()
+    const showModal = useNewsEditorStore((s) => s.showModal)
+    const closeModalFn = useNewsEditorStore((s) => s.closeModal)
+    const clearFields = useNewsEditorStore((s) => s.clearFields)
+    const setFetchNews = useNewsEditorStore((s) => s.setFetchNews)
+    const clearList = useNewsListStore((s) => s.clearList)
+
+    const editNews = async ({ body, _id }: IEditNews) => {
+        setFetchNews(true)
+        try {
+            await updateNews(_id, {
+                title: body.title,
+                body: body.body,
+                video: body.video,
+            })
+            showModal('Новость успешно изменена')
+            clearFields()
+            clearList()
+            setTimeout(() => {
+                closeModalFn()
+                router.push('/CMS')
+            }, 3000)
+        } catch {
+            showModal('Ошибка редактирования новости')
+            setTimeout(closeModalFn, 3000)
+        } finally {
+            setFetchNews(false)
+        }
+    }
+
+    const postNews = async (body: IBody) => {
+        setFetchNews(true)
+        try {
+            await createNews({
+                title: body.title,
+                body: body.body,
+                video: body.video,
+            })
+            showModal('Новость успешно отправлена')
+            clearFields()
+            clearList()
+            setTimeout(() => {
+                closeModalFn()
+                router.push('/CMS')
+            }, 3000)
+        } catch {
+            showModal('Ошибка отправки новости')
+            setTimeout(closeModalFn, 3000)
+        } finally {
+            setFetchNews(false)
+        }
+    }
+
+    return { postNews, editNews }
+}

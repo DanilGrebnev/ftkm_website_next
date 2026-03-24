@@ -1,0 +1,27 @@
+:root {
+    --maxWidth: 1920;
+    --global-palette-1: rgba(16, 6, 159, 1);
+    --global-palette-2: #1976d2;
+    --global-palette-3: white;
+    --global-palette-4: white;
+    --global-palette-5: #e0e0e0;
+}
+
+//-------------Adaptation-----------//
+@media screen and (min-width: 2000px) {
+    :root {
+        --maxWidth: 2000;
+    }
+}
+
+@media screen and (min-width: 4000px) {
+    :root {
+        --maxWidth: 4000;
+    }
+}
+
+@media screen and (min-width: 8000px) {
+    :root {
+        --maxWidth: 8000;
+    }
+}

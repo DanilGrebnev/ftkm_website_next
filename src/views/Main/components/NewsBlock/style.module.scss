@@ -1,0 +1,29 @@
+@import '@variables';
+
+.wrapper {
+    margin-top: adaptiveSize(50, 25);
+}
+
+.news-block-desktop {
+    width: 100%;
+    display: grid;
+    gap: adaptiveSize(20, 10);
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.news-block-mobile {
+    border: 1px solid $mui-blue;
+    @media screen and (max-width: 850px) {
+        display: block;
+    }
+}
+
+.news-list-mobile {
+    display: grid;
+    gap: 20px;
+
+    article {
+        height: auto;
+        max-height: 250px;
+    }
+}

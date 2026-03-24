@@ -1,0 +1,31 @@
+@import '@variables';
+
+.description {
+    @include font-24;
+    font-weight: normal;
+    grid-column: 1/3;
+    text-align: justify;
+}
+
+.description:before {
+    @include redLine;
+}
+
+.descriptionContainer {
+    display: grid;
+    gap: adaptiveSize(50, 25);
+    grid-template-columns: repeat(2, 1fr);
+
+    img {
+        display: inline-block;
+        width: 100%;
+        @include br-rd;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .descriptionContainer {
+        display: flex;
+        flex-direction: column;
+    }
+}

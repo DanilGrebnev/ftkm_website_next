@@ -1,0 +1,20 @@
+@import '@variables';
+
+.employee {
+    h3 {
+        @include font-24;
+        @include custom-mr-t-b(20);
+        text-align: start;
+    }
+
+    margin-bottom: adaptiveSize(100, 50);
+}
+
+.biografy_text {
+    @include font-20;
+    text-align: justify;
+}
+
+.biografy_text:before {
+    @include redLine;
+}

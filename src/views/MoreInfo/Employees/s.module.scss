@@ -1,0 +1,13 @@
+@import '@variables';
+
+.employees {
+    display: grid;
+    gap: adaptiveSize(50, 10);
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media screen and (max-width: 400px) {
+    .employees {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

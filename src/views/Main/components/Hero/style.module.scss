@@ -1,0 +1,64 @@
+@import '@variables';
+
+.Hero {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.VideoFilter {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.VideoFilterContent {
+    color: $color-w;
+    font-family: Montserrat;
+    text-align: center;
+    text-transform: uppercase;
+
+    .title {
+        @include font-64;
+        background: rgb(4, 12, 59);
+        line-height: normal;
+    }
+
+    h4 {
+        margin: adaptiveSize(50, 25) 0;
+        @include font-40;
+    }
+}
+
+.Faculty {
+    display: inline-block;
+    padding: 0 10px;
+    color: $color-w;
+    @include font-30;
+    p {
+        border-bottom: 2px solid white;
+    }
+}
+
+.Info {
+    @include font-24;
+    margin: 50px 0;
+    font-weight: 300;
+    text-transform: none;
+}
+
+.VideoIntro {
+    width: 100vw;
+    object-fit: cover;
+}
+
+.side-preparation{
+    font-weight: 400;
+}

@@ -1,0 +1,72 @@
+@import '@variables';
+
+@mixin elipses {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.file-list-item {
+    height: 60px;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+
+    &:hover {
+        .file-list-item__content {
+            opacity: 0;
+        }
+
+        .download-container {
+            opacity: 1;
+        }
+    }
+}
+
+.download-file-link {
+    display: none;
+}
+
+.file-list-conteiner {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+.file-list-item__content {
+    transition: 0.3s;
+    align-items: center;
+    height: 100%;
+    display: flex;
+    gap: adaptiveSize(20, 10);
+}
+
+.file-list-item__name {
+    max-width: 90%;
+    @include elipses;
+    @include font-16;
+    flex-grow: 1;
+}
+
+.download-container {
+    position: absolute !important;
+    text-transform: none !important;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    transition: 0.3s;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    opacity: 0;
+    align-items: center;
+}
+
+.downlad-text {
+    @include font-16;
+    @include elipses;
+    display: flex;
+    gap: adaptiveSize(20, 10);
+    margin-left: adaptiveSize(20, 10);
+}

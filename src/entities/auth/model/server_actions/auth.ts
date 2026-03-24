@@ -1,0 +1,66 @@
+'use server'
+
+import { dbConnect } from '@/shared/server_actions/db'
+import { UserModel } from '@/entities/auth/model/server_actions/models/User'
+import { SignJWT, jwtVerify } from 'jose'
+import { cookies } from 'next/headers'
+
+const SECRET = new TextEncoder().encode(
+    process.env.SECRET_JWT || 'default-secret-change-me'
+)
+const COOKIE_NAME = 'session'
+const EXPIRATION = '7d'
+
+async function createToken(payload: { login: string }) {
+    return new SignJWT(payload)
+        .setProtectedHeader({ alg: 'HS256' })
+        .setExpirationTime(EXPIRATION)
+        .sign(SECRET)
+}
+
+export async function login(loginVal: string, password: string) {
+    await dbConnect()
+
+    const user = await UserModel.findOne({ login: loginVal }).exec()
+
+    if (!user) {
+        return { error: 'Пользователь не найден' }
+    }
+
+    if (password !== user.password) {
+        return { error: 'Неверный пароль' }
+    }
+
+    const token = await createToken({ login: user.login })
+
+    const cookieStore = await cookies()
+    cookieStore.set(COOKIE_NAME, token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7,
+    })
+
+    return { success: true }
+}
+
+export async function getSession() {
+    const cookieStore = await cookies()
+    const token = cookieStore.get(COOKIE_NAME)?.value
+
+    if (!token) return null
+
+    try {
+        const { payload } = await jwtVerify(token, SECRET)
+        return payload as { login: string }
+    } catch {
+        return null
+    }
+}
+
+export async function logout() {
+    const cookieStore = await cookies()
+    cookieStore.delete(COOKIE_NAME)
+    return { success: true }
+}

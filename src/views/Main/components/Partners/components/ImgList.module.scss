@@ -1,0 +1,28 @@
+@import '@variables';
+
+$gap: adaptiveSize(20, 5);
+
+@mixin gridTable($cells) {
+    $gridSize: adaptiveSize(400, 150);
+    grid-template-columns: repeat($cells, 1fr);
+    grid-template-rows: repeat($cells, auto);
+}
+
+.imgWrapper {
+    @include gridTable(3);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    gap: adaptiveSize(50, 20);
+
+    & > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+}

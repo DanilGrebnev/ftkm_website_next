@@ -1,0 +1,46 @@
+@import '@variables';
+
+.Swiper {
+    position: relative;
+}
+
+.SwiperSlide {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.img {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    object-position: 50% 50%;
+    @include br-rd;
+}
+
+.swiper-btn {
+    &-prev {
+        left: adaptiveSize(15, 10);
+        &:hover {
+            left: 5px;
+        }
+    }
+
+    &-next {
+        right: adaptiveSize(15, 10);
+        left: auto;
+        transform: rotate(180deg) translateY(50%);
+        &:hover {
+            right: 5px;
+        }
+    }
+
+    &-next,
+    &-prev {
+        @media screen and (max-width: 450px) {
+            display: none;
+        }
+    }
+}

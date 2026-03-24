@@ -1,0 +1,41 @@
+@import '@variables';
+
+$color: rgb(144, 202, 249);
+
+.button {
+    @include Roboto;
+    position: relative;
+    display: block;
+    max-width: max-content;
+    padding: adaptiveSize(10, 5) adaptiveSize(20, 10);
+    border: none;
+    background: white;
+
+    color: black;
+    cursor: pointer;
+
+    font-size: adaptiveSize(20, 12);
+    outline: none;
+    transition: 0.3s;
+}
+
+.button.active {
+    color: $mui-blue;
+}
+
+.button:hover {
+    color: $mui-blue;
+}
+
+.button.active:after {
+    position: absolute;
+    z-index: 3;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-radius: 4px;
+    background: $mui-blue;
+    content: '';
+    transition: 0.3s;
+}
