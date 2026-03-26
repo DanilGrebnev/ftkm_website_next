@@ -24,9 +24,6 @@ export const NewsItem: FC<INewsItem> = ({
             <DateBlock createdDate={createdDate} />
 
             {!!files.length && <FileList files={files} />}
-            <span>
-                id нвости: <b>{_id}</b>
-            </span>
             <div className={s.btnGroup}>
                 <EditBtn id={_id} />
                 <DeleteBtn

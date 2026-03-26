@@ -5,13 +5,14 @@
 }
 
 .Header {
-    background: $main-blue !important;
-}
+    &.Header {
+        background: var(--global-palette-1, rgba(16, 6, 159, 1)) !important;
+        background-color: var(--global-palette-1, rgba(16, 6, 159, 1)) !important;
+    }
 
-.Header {
     a {
         .Btn {
-            color: $header-link-color;
+            color: var(--global-palette-3, white);
             cursor: pointer;
             font-weight: 600;
         }

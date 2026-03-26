@@ -1,5 +1,6 @@
 'use client'
 
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 import { FC, ReactNode } from 'react'
 
 import { ErrorBoundary } from './Providers'
@@ -12,12 +13,14 @@ interface AppProvidersProps {
 
 export const AppProviders: FC<AppProvidersProps> = ({ children }) => {
     return (
-        <ErrorBoundary>
-            <FramerMotionProvider>
-                <TanStackQueryProvider>
-                    {children}
-                </TanStackQueryProvider>
-            </FramerMotionProvider>
-        </ErrorBoundary>
+        <AppRouterCacheProvider options={{ prepend: true }}>
+            <ErrorBoundary>
+                <FramerMotionProvider>
+                    <TanStackQueryProvider>
+                        {children}
+                    </TanStackQueryProvider>
+                </FramerMotionProvider>
+            </ErrorBoundary>
+        </AppRouterCacheProvider>
     )
 }

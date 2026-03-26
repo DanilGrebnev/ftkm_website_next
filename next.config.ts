@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
         includePaths: [path.join(__dirname, 'src/shared/styles')],
         silenceDeprecations: ['legacy-js-api', 'import', 'slash-div'],
     },
-    webpack: (config) => {
+    webpack: (config, { dev }) => {
         config.resolve.alias['@variables'] = path.join(
             __dirname,
             'src/shared/styles/_variables.scss'
@@ -20,6 +20,13 @@ const nextConfig: NextConfig = {
             test: /\.(png|jpe?g|gif|webp|avif|ico|bmp)$/i,
             type: 'asset/resource',
         })
+
+        if (dev) {
+            config.watchOptions = {
+                poll: 1000,
+                aggregateTimeout: 300,
+            }
+        }
 
         return config
     },

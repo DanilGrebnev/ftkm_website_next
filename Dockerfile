@@ -1,8 +1,3 @@
-FROM node:20-alpine AS deps
-WORKDIR /app
-COPY package.json yarn.lock* ./
-RUN yarn install --frozen-lockfile --production
-
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package.json yarn.lock* ./
@@ -22,7 +17,6 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=deps /app/node_modules ./node_modules
 
 RUN mkdir -p public/uploads && chown nextjs:nodejs public/uploads
 

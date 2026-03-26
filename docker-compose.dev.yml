@@ -18,8 +18,9 @@ services:
     env_file: .env
     environment:
       - MONGODB_URI=mongodb://mongo:27017/ftkm
-      - WATCHPACK_POLLING=true
+      - WATCHPACK_POLLING=1000
       - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000
     volumes:
       - .:/app
       - /app/node_modules
