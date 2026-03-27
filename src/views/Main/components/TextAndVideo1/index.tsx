@@ -18,16 +18,18 @@ export const TextAndVideo1 = () => {
       }}
       className={`Text-and-video-1 ${style.TextAndVideo1}`}
     >
-      <p>
-        <strong>
+      <blockquote className={style.quote} lang="ru">
+        <p className={style.quoteLead}>
           <q>
             Сегодня работа сотен и тысяч горняков и металлургов во многом
             определяют динамику российской экономики
           </q>
           ,
-        </strong>
-        - сказал Владимир Владимирович Путин о металлургии.
-      </p>
+        </p>
+        <footer className={style.quoteAttribution}>
+          — сказал Владимир Владимирович Путин о металлургии.
+        </footer>
+      </blockquote>
       <div className={style.mediaWrap}>
         <LazyWhenVisible
           rootMargin="200px"

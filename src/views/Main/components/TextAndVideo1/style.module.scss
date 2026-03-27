@@ -2,27 +2,62 @@
 
 .TextAndVideo1 {
   font-family: Monserrat;
-  @include font-32;
   gap: adaptiveSize(50, 28);
-  align-items: center;
+  align-items: stretch;
 
   @include mr-t-b;
   @include pd-t-b;
 
-  p {
-    text-align: justify;
+  .quote {
     flex: 1;
     min-width: min(100%, 420px);
+    margin: 0;
+    padding: adaptiveSize(32, 20) adaptiveSize(36, 22);
+    padding-left: adaptiveSize(32, 18);
+    border-left: 4px solid $main-blue;
+    border-radius: 0 adaptiveSize(12, 8) adaptiveSize(12, 8) 0;
+    background: linear-gradient(
+      105deg,
+      color-mix(in srgb, $main-blue 10%, white 90%) 0%,
+      color-mix(in srgb, $main-blue 4%, white 96%) 48%,
+      white 100%
+    );
+    box-shadow:
+      0 4px 20px rgb(16 6 159 / 0.08),
+      0 1px 3px rgb(0 0 0 / 0.04);
   }
 
-  strong {
-    display: block;
+  .quoteLead {
+    margin: 0;
+    @include font-32;
+    font-weight: 600;
+    line-height: 1.48;
+    color: rgba(0, 0, 0, 0.9);
+    text-wrap: balance;
+    letter-spacing: 0.01em;
+  }
+
+  .quoteLead q {
+    font-weight: 700;
+    color: color-mix(in srgb, black 82%, $main-blue 18%);
+  }
+
+  .quoteAttribution {
+    margin: adaptiveSize(20, 14) 0 0;
+    padding-top: adaptiveSize(16, 12);
+    border-top: 1px solid color-mix(in srgb, $main-blue 22%, transparent);
+    @include font-18;
+    font-weight: 500;
+    color: $text-secondary;
+    line-height: 1.45;
+    font-style: normal;
   }
 
   .mediaWrap {
     flex: 1;
     min-width: min(100%, 520px);
     max-width: 640px;
+    align-self: center;
   }
 }
 
@@ -35,5 +70,10 @@
 
   .mediaWrap {
     max-width: 100%;
+  }
+
+  .quote {
+    border-radius: adaptiveSize(12, 8);
+    border-left-width: 3px;
   }
 }
