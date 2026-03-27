@@ -1,32 +1,39 @@
-@import '@variables';
+@import "@variables";
 
 .TextAndVideo1 {
-    font-family: Monserrat;
-    @include font-32;
-    gap: 50px;
+  font-family: Monserrat;
+  @include font-32;
+  gap: adaptiveSize(50, 28);
+  align-items: center;
 
-    @include mr-t-b;
-    @include pd-t-b;
+  @include mr-t-b;
+  @include pd-t-b;
 
-    p {
-        text-align: justify;
-    }
+  p {
+    text-align: justify;
+    flex: 1;
+    min-width: min(100%, 420px);
+  }
 
-    strong {
-        display: block;
-    }
+  strong {
+    display: block;
+  }
 
-    video {
-        width: 100%;
-        border-radius: 4px;
-        aspect-ratio: 16 / 9;
-    }
+  .mediaWrap {
+    flex: 1;
+    min-width: min(100%, 520px);
+    max-width: 640px;
+  }
 }
 
 @media screen and (max-width: 1100px) {
-    .TextAndVideo1 {
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column-reverse;
-    }
+  .TextAndVideo1 {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .mediaWrap {
+    max-width: 100%;
+  }
 }

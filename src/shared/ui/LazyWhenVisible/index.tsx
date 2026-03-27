@@ -11,6 +11,8 @@ type LazyWhenVisibleProps = {
     children: ReactNode
     className?: string
     rootMargin?: string
+    /** Плейсхолдер до появления в viewport (сохраняет вёрстку и LCP-область). */
+    fallback?: ReactNode
 }
 
 /** Рендерит children только после пересечения с viewport (отложенная загрузка тяжёлых чанков). */
@@ -18,6 +20,7 @@ export function LazyWhenVisible({
     children,
     className,
     rootMargin = '200px',
+    fallback = null,
 }: LazyWhenVisibleProps) {
     const [visible, setVisible] = useState(false)
     const ref = useRef<HTMLDivElement>(null)
@@ -45,7 +48,7 @@ export function LazyWhenVisible({
             ref={ref}
             className={className}
         >
-            {visible ? children : null}
+            {visible ? children : fallback}
         </div>
     )
 }

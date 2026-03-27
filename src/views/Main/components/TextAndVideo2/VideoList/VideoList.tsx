@@ -1,33 +1,23 @@
-import Video from '@components/VideoComponent'
+import { VidstackPlayer } from "@/shared/ui/VidstackPlayer";
 
-import s from '../style.module.scss'
+import s from "../style.module.scss";
 
-const VideoList = () => {
-    return (
-        <>
-            <Video
-                title='Металлургия - это красиво!'
-                src='https://www.youtube.com/embed/KpnW1E0mmgc?si=179nI_FPWPNvCQYA'
-                type='YouTube'
-                preload='metadata'
-                className={s.video1}
-            />
-            <Video
-                type='YouTube'
-                title='Металлургия - это красиво!'
-                src='https://www.youtube.com/embed/4WiUXo5x2eI'
-                className={s.video2}
-                poster='images/poseter1.webp'
-            />
-            <Video
-                src='https://www.youtube.com/embed/qYMFJE3CQi0?si=8Tkqi3b0ERUetVB2'
-                type='YouTube'
-                title='РМ Рейл ВКМ Сталь'
-                preload='metadata'
-                className={s.video3}
-            />
-        </>
-    )
+function VideoList() {
+  return (
+    <>
+      <VidstackPlayer
+        title="Металлургия — это красиво (фрагмент 1)"
+        src="/videos/hero_video_1.mp4"
+        className={s.video1}
+      />
+      <VidstackPlayer
+        title="Металлургия — это красиво (фрагмент 2)"
+        src="/videos/hero_video_2.mp4"
+        className={s.video2}
+      />
+    </>
+  );
 }
 
-export { VideoList }
+export { VideoList };
+export default VideoList;

@@ -1,0 +1,49 @@
+@import "@variables";
+
+.wrap {
+  width: 100%;
+  /*
+   * Скин берёт размеры от наследованного font-size. Родители вроде .TextAndVideo1 задают крупный шрифт
+   * цитате — без сброса раздувется [part='time-divider'] между current/total.
+   */
+  font-size: 16px;
+  line-height: normal;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Акцент скина Vidstack под палитру сайта */
+  --video-brand: #{$main-blue};
+  --video-border-radius: 6px;
+  --video-controls-color: #f5f5f5;
+  box-shadow:
+    0 12px 40px rgb(0 0 0 / 0.14),
+    0 2px 8px rgb(0 0 0 / 0.06);
+}
+
+.wrap :global(media-player) {
+  width: 100%;
+  max-height: none;
+}
+
+.skeleton {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  @include br-rd;
+  background: linear-gradient(
+    110deg,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.03) 45%,
+    rgba(0, 0, 0, 0.08) 60%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}

@@ -33,23 +33,33 @@ declare module "*.ico" {
   export default src;
 }
 
-declare module "swiper" {
-  export const Pagination: any;
-  export const Navigation: any;
-  export const Autoplay: any;
-  export const EffectFade: any;
-  export const Thumbs: any;
-}
-
-declare module "swiper/react" {
-  import { ComponentType } from "react";
-  export const Swiper: ComponentType<any>;
-  export const SwiperSlide: ComponentType<any>;
-  export function useSwiper(): any;
-}
-
-declare module "swiper/swiper-bundle.min.css" {}
-
-declare module "*.scss";
-declare module "*.sass";
 declare module "*.css";
+
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "media-player": DetailedHTMLProps<
+        HTMLAttributes<HTMLElement> & {
+          src?: string;
+          poster?: string;
+          title?: string;
+          preload?: string;
+          load?: string;
+        },
+        HTMLElement
+      >;
+      "media-outlet": DetailedHTMLProps<
+        HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+      "media-community-skin": DetailedHTMLProps<
+        HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+  }
+}
+
+export {};
