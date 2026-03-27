@@ -4,6 +4,7 @@ import { createNews, updateNews } from '@/entities/article/model/server_actions/
 import { useNewsEditorStore } from '@/entities/article/model/store/useNewsEditorStore'
 import { useNewsListStore } from '@/entities/article/model/store/useNewsListStore'
 import { IBody } from '@/entities/article/model/server_actions/types/News'
+import { API_RESPONSES } from '@API_RESPONSES'
 import { useRouter } from 'next/navigation'
 
 interface IEditNews {
@@ -27,7 +28,7 @@ export const useSendNews = () => {
                 body: body.body,
                 video: body.video,
             })
-            showModal('Новость успешно изменена')
+            showModal(API_RESPONSES.NEWS_EDIT_OK)
             clearFields()
             clearList()
             setTimeout(() => {
@@ -35,7 +36,7 @@ export const useSendNews = () => {
                 router.push('/CMS')
             }, 3000)
         } catch {
-            showModal('Ошибка редактирования новости')
+            showModal(API_RESPONSES.NEWS_EDIT_ERROR)
             setTimeout(closeModalFn, 3000)
         } finally {
             setFetchNews(false)
@@ -50,7 +51,7 @@ export const useSendNews = () => {
                 body: body.body,
                 video: body.video,
             })
-            showModal('Новость успешно отправлена')
+            showModal(API_RESPONSES.NEWS_SEND_OK)
             clearFields()
             clearList()
             setTimeout(() => {
@@ -58,7 +59,7 @@ export const useSendNews = () => {
                 router.push('/CMS')
             }, 3000)
         } catch {
-            showModal('Ошибка отправки новости')
+            showModal(API_RESPONSES.NEWS_SEND_ERROR)
             setTimeout(closeModalFn, 3000)
         } finally {
             setFetchNews(false)

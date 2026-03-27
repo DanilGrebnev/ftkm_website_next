@@ -1,80 +1,88 @@
-@import '@variables';
+@import "@variables";
 
 .admission {
-    @include mr-t-b;
-    @include pd-t-b;
+  @include mr-t-b;
+  @include pd-t-b;
 
-    position: relative;
+  position: relative;
 
-    h2 {
-        @include font-42;
-        margin-bottom: adaptiveSize(100, 50);
-        grid-column: 1/4;
-    }
-
-    h3 {
-        @include font-22;
-        text-align: center;
-    }
+  h2 {
+    @include font-42;
+    margin-bottom: adaptiveSize(100, 50);
+    grid-column: 1/4;
+  }
 }
 
-.admission-content {
-    display: grid;
-    justify-items: center;
-    row-gap: adaptiveSize(40, 10);
-    grid-template-columns: repeat(4, 1fr);
-
-    grid-template-areas:
-        'title1 title2 title3 title3'
-        'circle1 circle2 circle3 circle4';
+.admission-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media screen and (max-width: 500px) {
-    .admission-content {
-        grid-template-columns: repeat(2, 1fr);
-
-        grid-template-areas:
-            'title1 title2'
-            'circle1 circle2'
-            'title3 title3'
-            'circle3 circle4';
-    }
+.empty-hint {
+  @include font-22;
+  text-align: center;
+  max-width: 640px;
+  margin-bottom: adaptiveSize(40, 24);
+  color: $text-secondary;
 }
 
-.title {
-    &1 {
-        grid-area: title1;
-    }
-    &2 {
-        grid-area: title2;
-    }
-    &3 {
-        grid-area: title3;
-    }
+.directions-list {
+  display: flex;
+  width: 100%;
+  max-width: 1100px;
+  flex-direction: column;
+  gap: adaptiveSize(56, 32);
+  padding: 0;
+  margin: 0 0 adaptiveSize(40, 24);
+  list-style: none;
+}
+
+.direction-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.direction-title {
+  @include font-26;
+  margin-bottom: adaptiveSize(28, 16);
+  font-weight: 600;
+  justify-self: center;
+}
+
+.circles-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: adaptiveSize(48, 24);
 }
 
 .circle {
-    &1 {
-        grid-area: circle1;
-    }
-    &2 {
-        grid-area: circle2;
-    }
-    &3 {
-        grid-area: circle3;
-    }
-    &4 {
-        grid-area: circle4;
-    }
+  &.circleBudget,
+  &.circlePassing {
+    flex: 0 0 auto;
+  }
+}
+
+.additional-info {
+  @include font-18;
+  max-width: 520px;
+  margin-top: adaptiveSize(12, 8);
+  margin-bottom: 0;
+  color: $text-secondary;
+  line-height: 1.4;
 }
 
 .footer-text {
-    @include font-24;
-    @include centering;
-    width: fit-content;
-    margin-top: adaptiveSize(50, 20);
-    text-transform: uppercase;
-    font-weight: bold;
-    text-align: center;
-    border-bottom: 2px solid $main-blue;
+  @include font-24;
+  @include centering;
+  width: fit-content;
+  margin-top: adaptiveSize(50, 20);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid $main-blue;
 }

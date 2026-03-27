@@ -23,15 +23,17 @@
     color: $color-w;
     font-weight: bold;
 
-    margin-bottom: adaptiveSize(20, 10);
+    margin-bottom: adaptiveSize(16, 10);
 }
 
 .title {
-    @include font-30;
+    @include font-22;
+    margin: 0;
     font-weight: 600;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 .subcircle-text {
     @include font-20;
+    margin-top: adaptiveSize(8, 4);
 }

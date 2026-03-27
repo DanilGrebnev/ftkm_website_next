@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 
+import type { IAdmissionItem } from '@/entities/admission/model/server_actions/types/AdmissionItem'
 import { LazyWhenVisible } from '@UI/LazyWhenVisible'
 
 import { Admission } from './components/Admission'
@@ -20,7 +21,11 @@ import { TextAndVideo2 } from './components/TextAndVideo2'
 
 import s from './style.module.scss'
 
-export const Main = () => {
+interface MainProps {
+    admissionItems?: IAdmissionItem[]
+}
+
+export const Main = ({ admissionItems = [] }: MainProps) => {
     return (
         <section className={clsx('Main-page', s.Main)}>
             <Hero />
@@ -30,7 +35,7 @@ export const Main = () => {
             <TextAndVideo2 />
             <CareerOpportunities />
             <Graduates />
-            <Admission />
+            <Admission items={admissionItems} />
             <LazyWhenVisible>
                 <SwiperEquipment />
             </LazyWhenVisible>

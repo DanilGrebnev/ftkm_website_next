@@ -17,9 +17,11 @@ export const ItemCircle: React.FC<IItemCircle> = ({
 }) => {
     return (
         <div className={clsx(s.ItemCircle, className)}>
-            <p className={s.title}>{title}</p>
             <div className={s.circle}>{circleText}</div>
-            <p className={s['subcircle-text']}>{subCircleText}</p>
+            {title ? <p className={s.title}>{title}</p> : null}
+            {subCircleText ? (
+                <p className={s['subcircle-text']}>{subCircleText}</p>
+            ) : null}
         </div>
     )
 }

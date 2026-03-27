@@ -1,6 +1,7 @@
 'use server'
 
 import { dbConnect } from '@/shared/server_actions/db'
+import { withServerErrorLog } from '@/shared/server_actions/logServerError'
 import { UserModel } from '@/entities/auth/model/server_actions/models/User'
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
@@ -19,48 +20,54 @@ async function createToken(payload: { login: string }) {
 }
 
 export async function login(loginVal: string, password: string) {
-    await dbConnect()
+    return withServerErrorLog('Вход в систему (аутентификация)', async () => {
+        await dbConnect()
 
-    const user = await UserModel.findOne({ login: loginVal }).exec()
+        const user = await UserModel.findOne({ login: loginVal }).exec()
 
-    if (!user) {
-        return { error: 'Пользователь не найден' }
-    }
+        if (!user) {
+            return { error: 'Пользователь не найден' }
+        }
 
-    if (password !== user.password) {
-        return { error: 'Неверный пароль' }
-    }
+        if (password !== user.password) {
+            return { error: 'Неверный пароль' }
+        }
 
-    const token = await createToken({ login: user.login })
+        const token = await createToken({ login: user.login })
 
-    const cookieStore = await cookies()
-    cookieStore.set(COOKIE_NAME, token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        path: '/',
-        maxAge: 60 * 60 * 24 * 7,
+        const cookieStore = await cookies()
+        cookieStore.set(COOKIE_NAME, token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7,
+        })
+
+        return { success: true }
     })
-
-    return { success: true }
 }
 
 export async function getSession() {
-    const cookieStore = await cookies()
-    const token = cookieStore.get(COOKIE_NAME)?.value
+    return withServerErrorLog('Получение сессии', async () => {
+        const cookieStore = await cookies()
+        const token = cookieStore.get(COOKIE_NAME)?.value
 
-    if (!token) return null
+        if (!token) return null
 
-    try {
-        const { payload } = await jwtVerify(token, SECRET)
-        return payload as { login: string }
-    } catch {
-        return null
-    }
+        try {
+            const { payload } = await jwtVerify(token, SECRET)
+            return payload as { login: string }
+        } catch {
+            return null
+        }
+    })
 }
 
 export async function logout() {
-    const cookieStore = await cookies()
-    cookieStore.delete(COOKIE_NAME)
-    return { success: true }
+    return withServerErrorLog('Выход из системы', async () => {
+        const cookieStore = await cookies()
+        cookieStore.delete(COOKIE_NAME)
+        return { success: true }
+    })
 }

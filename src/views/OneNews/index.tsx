@@ -1,7 +1,8 @@
 'use client'
 
-import { TextareaView } from '@/shared/ui/ArticleBodyPreview/ArticleBodyPreview'
+import { formatNewsCreatedDate } from '@/entities/article/lib/formatNewsCreatedDate'
 import { NewsCardSkeleton } from '@/entities/article/ui/NewsCardSkeleton/NewsCardSekelton'
+import { TextareaView } from '@/shared/ui/ArticleBodyPreview/ArticleBodyPreview'
 import { getNewsById } from '@/entities/article/model/server_actions/news'
 import { useSetDocumentTitle } from '@/shared/hooks/useSetDocumentTitle'
 import { INewsItem } from '@/entities/article/model/server_actions/types/News'
@@ -60,7 +61,9 @@ const OneNews = () => {
             id='One-News-block'
         >
             <p className={s.title}>{news?.title}</p>
-            <div className={s['news-date']}>{news?.createdDate}</div>
+            <div className={s['news-date']}>
+                {formatNewsCreatedDate(news?.createdDate)}
+            </div>
             <TextareaView className={s['news-body']}>{news?.body}</TextareaView>
             <Vide src={news?.video} />
             <FileList fileList={news?.files} />

@@ -1,6 +1,7 @@
 'use server'
 
 import { dbConnect } from '@/shared/server_actions/db'
+import { withServerErrorLog } from '@/shared/server_actions/logServerError'
 import { NewsModel } from '@/entities/article/model/server_actions/models/News'
 import { revalidatePath } from 'next/cache'
 import { getSession } from '@/entities/auth/model/server_actions/auth'
@@ -21,45 +22,47 @@ function generateFileName(originalName: string): string {
 }
 
 export async function uploadNewsFile(newsId: string, formData: FormData) {
-    const session = await getSession()
-    if (!session) throw new Error('Unauthorized')
+    return withServerErrorLog(`Загрузка файла к новости (${newsId})`, async () => {
+        const session = await getSession()
+        if (!session) throw new Error('Unauthorized')
 
-    await dbConnect()
-    await ensureUploadsDir()
+        await dbConnect()
+        await ensureUploadsDir()
 
-    const file = formData.get('file') as File | null
-    if (!file) throw new Error('No file provided')
+        const file = formData.get('file') as File | null
+        if (!file) throw new Error('No file provided')
 
-    const arrayBuffer = await file.arrayBuffer()
-    const uint8 = new Uint8Array(arrayBuffer)
-    const fileName = generateFileName(file.name)
-    const filePath = path.join(UPLOADS_DIR, fileName)
+        const arrayBuffer = await file.arrayBuffer()
+        const uint8 = new Uint8Array(arrayBuffer)
+        const fileName = generateFileName(file.name)
+        const filePath = path.join(UPLOADS_DIR, fileName)
 
-    await fs.writeFile(filePath, uint8)
+        await fs.writeFile(filePath, uint8)
 
-    const ext = path.extname(file.name)
+        const ext = path.extname(file.name)
 
-    const news = await NewsModel.findById(newsId).exec()
-    if (!news) {
-        await fs.unlink(filePath).catch(() => {})
-        throw new Error('News not found')
-    }
+        const news = await NewsModel.findById(newsId).exec()
+        if (!news) {
+            await fs.unlink(filePath).catch(() => {})
+            throw new Error('News not found')
+        }
 
-    news.files.push({
-        newsId,
-        name: fileName,
-        data: filePath,
-        extension: ext,
+        news.files.push({
+            newsId,
+            name: fileName,
+            data: filePath,
+            extension: ext,
+        })
+
+        await news.save()
+
+        const plain = JSON.parse(JSON.stringify(news.toObject()))
+
+        revalidatePath('/CMS')
+        revalidatePath(`/news/${newsId}`)
+
+        return plain.files
     })
-
-    await news.save()
-
-    const plain = JSON.parse(JSON.stringify(news.toObject()))
-
-    revalidatePath('/CMS')
-    revalidatePath(`/news/${newsId}`)
-
-    return plain.files
 }
 
 export async function deleteNewsFile({
@@ -69,25 +72,27 @@ export async function deleteNewsFile({
     newsId: string
     fileName: string
 }) {
-    const session = await getSession()
-    if (!session) throw new Error('Unauthorized')
+    return withServerErrorLog(`Удаление файла новости (${newsId}, ${fileName})`, async () => {
+        const session = await getSession()
+        if (!session) throw new Error('Unauthorized')
 
-    await dbConnect()
+        await dbConnect()
 
-    const news = await NewsModel.findById(newsId).exec()
-    if (!news) throw new Error('News not found')
+        const news = await NewsModel.findById(newsId).exec()
+        if (!news) throw new Error('News not found')
 
-    const filePath = path.join(UPLOADS_DIR, fileName)
-    await fs.unlink(filePath).catch(() => {})
+        const filePath = path.join(UPLOADS_DIR, fileName)
+        await fs.unlink(filePath).catch(() => {})
 
-    news.files = news.files.filter((f) => f.name !== fileName) as any
+        news.files = news.files.filter((f) => f.name !== fileName) as any
 
-    await news.save()
+        await news.save()
 
-    const plain = JSON.parse(JSON.stringify(news.toObject()))
+        const plain = JSON.parse(JSON.stringify(news.toObject()))
 
-    revalidatePath('/CMS')
-    revalidatePath(`/news/${newsId}`)
+        revalidatePath('/CMS')
+        revalidatePath(`/news/${newsId}`)
 
-    return plain.files
+        return plain.files
+    })
 }

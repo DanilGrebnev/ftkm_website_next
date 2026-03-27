@@ -1,7 +1,8 @@
 'use client'
 
-import { TextareaView } from '@/shared/ui/ArticleBodyPreview/ArticleBodyPreview'
+import { formatNewsCreatedDate } from '@/entities/article/lib/formatNewsCreatedDate'
 import { type INewsItem } from '@/entities/article/model/server_actions/types/News'
+import { TextareaView } from '@/shared/ui/ArticleBodyPreview/ArticleBodyPreview'
 import { selectFileExtensionIcon } from '@/shared/utils/selectFileExtensionIcon'
 import clsx from 'clsx'
 import { useRouter } from 'next/navigation'
@@ -24,7 +25,7 @@ export const NewsCardItem: React.FC<INewsItem> = memo(
             >
                 <div className={s.wrapper}>
                     <p className={s.title}>{title}</p>
-                    <p className={s.date}>{createdDate}</p>
+                    <p className={s.date}>{formatNewsCreatedDate(createdDate)}</p>
                     <div
                         className={clsx(s.files, {
                             [s.hidden]: !files?.length,

@@ -1,0 +1,35 @@
+.section {
+    width: 100%;
+    max-width: 720px;
+    padding: 16px 0 48px;
+}
+
+.back {
+    margin-bottom: 16px;
+}
+
+.title {
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    margin-bottom: 24px;
+}
+
+.card {
+    padding: 20px;
+}
+
+.actions {
+    margin-top: 24px;
+}
+
+.feedback {
+    margin-top: 16px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    padding: 48px;
+}

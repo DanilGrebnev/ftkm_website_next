@@ -10,6 +10,12 @@ export const NavButton = () => {
                 type='button'
                 className={s.btn}
             >
+                <Link href='/CMS/admission'>Поступление</Link>
+            </Button>
+            <Button
+                type='button'
+                className={s.btn}
+            >
                 <Link href={'/'}>На главную</Link>
             </Button>
         </div>

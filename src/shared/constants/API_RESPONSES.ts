@@ -1,5 +1,5 @@
 export const API_RESPONSES = {
-    NEWS_SEND_OK: 'Новость успешно опубликована',
+    NEWS_SEND_OK: 'Новость успешно создана',
     NEWS_SEND_ERROR: 'Ошибка публикации новости',
     NEWS_EDIT_OK: 'Редактирование новости успешно',
     NEWS_EDIT_ERROR: 'Ошибка редактирования новости',

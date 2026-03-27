@@ -38,7 +38,7 @@ export const SendButton = () => {
                 setTimeout(setDisabled, 3000, false)
             }}
             loading={fetchNews}
-            text={_id ? 'Изменить' : 'Отправить'}
+            text={_id ? 'Изменить' : 'Создать'}
             disabled={disabled}
         />
     )

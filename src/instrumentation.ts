@@ -1,3 +1,5 @@
+import { logServerError } from '@/shared/server_actions/logServerError'
+
 export async function register() {
     if (process.env.NEXT_RUNTIME === 'nodejs') {
         const login = process.env.ADMIN_LOGIN
@@ -27,7 +29,7 @@ export async function register() {
             await UserModel.create({ login, password })
             console.log(`[seed] Created admin user "${login}"`)
         } catch (err) {
-            console.warn('[seed] Could not seed admin user (DB not ready yet):', (err as Error).message)
+            logServerError('Сидирование администратора при старте', err)
         }
     }
 }

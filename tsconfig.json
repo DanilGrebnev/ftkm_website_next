@@ -23,7 +23,7 @@
       "@lib/*": ["./src/shared/utils/*"],
       "@hooks/*": ["./src/shared/hooks/*"],
       "@UI/*": ["./src/shared/ui/*"],
-      "@interfaces/*": ["./src/shared/server_actions/types/*"],
+      "@interfaces/*": ["./src/shared/types/*"],
       "@fonts/*": ["./src/shared/font/*"],
       "@globalVariables": ["./src/shared/constants/globalVariables.ts"],
       "@API_RESPONSES": ["./src/shared/constants/API_RESPONSES.ts"],
