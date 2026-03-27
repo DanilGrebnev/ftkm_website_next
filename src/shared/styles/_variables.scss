@@ -1,14 +1,14 @@
-$main-blue: var(--global-palette-1);
+$main-blue: var(--global-palette-1, rgba(16, 6, 159, 1));
 
-$mui-blue: var(--global-palette-2);
+$mui-blue: var(--global-palette-2, #1976d2);
 
-$header-link-color: var(--global-palette-3);
+$header-link-color: var(--global-palette-3, white);
 
-$color-w: var(--global-palette-4);
+$color-w: var(--global-palette-4, white);
 
 $border: 1px solid black;
 
-$footer-bg: var(--global-palette-5);
+$footer-bg: var(--global-palette-5, #e0e0e0);
 
 $text-secondary: rgba(0, 0, 0, 0.6);
 

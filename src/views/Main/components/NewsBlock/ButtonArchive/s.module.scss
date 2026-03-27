@@ -10,5 +10,5 @@
 
 .button {
     width: fit-content;
-    color: var(--global-palette-2) !important;
+    color: var(--global-palette-2, #1976d2) !important;
 }

@@ -8,6 +8,6 @@
 .btn {
     a {
         width: fit-content;
-        color: var(--global-palette-1);
+        color: var(--global-palette-1, rgba(16, 6, 159, 1));
     }
 }
