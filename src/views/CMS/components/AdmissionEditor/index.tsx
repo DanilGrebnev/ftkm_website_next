@@ -11,7 +11,6 @@ import {
     TextField,
     Typography,
 } from '@mui/material'
-import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
 
 import type { IAdmissionItem } from '@/entities/admission/model/server_actions/types/AdmissionItem'
@@ -105,14 +104,6 @@ export const AdmissionEditor = () => {
 
     return (
         <section className={s.section}>
-            <Button
-                component={Link}
-                href='/CMS'
-                variant='text'
-                className={s.back}
-            >
-                ← Новости
-            </Button>
             <Typography
                 variant='h5'
                 component='h1'

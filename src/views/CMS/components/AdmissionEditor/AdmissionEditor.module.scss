@@ -1,11 +1,11 @@
+@import '@variables';
+
 .section {
+    box-sizing: border-box;
     width: 100%;
     max-width: 720px;
-    padding: 16px 0 48px;
-}
-
-.back {
-    margin-bottom: 16px;
+    margin-inline: auto;
+    padding: 16px adaptiveSize(40, 16) 48px;
 }
 
 .title {
@@ -31,5 +31,6 @@
 .center {
     display: flex;
     justify-content: center;
-    padding: 48px;
+    padding: 48px adaptiveSize(40, 16);
+    box-sizing: border-box;
 }

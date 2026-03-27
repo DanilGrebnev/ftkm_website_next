@@ -2,6 +2,8 @@
 
 import { FC, ReactNode } from 'react'
 
+import { CmsHeader } from '@/views/CMS/components/CmsHeader'
+
 import s from './style.module.scss'
 import './style.scss'
 
@@ -15,6 +17,7 @@ const CMS: FC<CMSProps> = ({ children }) => {
             id='CMS'
             className={s.CMS}
         >
+            <CmsHeader />
             {children}
         </section>
     )

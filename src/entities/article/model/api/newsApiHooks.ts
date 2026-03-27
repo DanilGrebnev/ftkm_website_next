@@ -4,14 +4,22 @@ import { getNewsPage } from '@/entities/article/model/server_actions/news'
 import { globalVariables } from '@globalVariables'
 
 export const useGetNewsQuery = () => {
+    const limit = globalVariables.limit
+
     return useInfiniteQuery({
         queryKey: [newsApiKeys.getNews],
         queryFn: ({ pageParam }) => getNewsPage(pageParam),
-        getNextPageParam: (_, __, { skip }) => ({
-            skip: skip + globalVariables.limit,
-            limit: globalVariables.limit,
-        }),
+        getNextPageParam: (lastPage, allPages) => {
+            const totalLoaded = allPages.reduce(
+                (sum, page) => sum + page.data.length,
+                0
+            )
+            if (totalLoaded >= lastPage.totalCount) {
+                return undefined
+            }
+            return { skip: totalLoaded, limit }
+        },
         select: ({ pages }) => pages.map((page) => page.data).flat(),
-        initialPageParam: { skip: 0, limit: globalVariables.limit },
+        initialPageParam: { skip: 0, limit },
     })
 }

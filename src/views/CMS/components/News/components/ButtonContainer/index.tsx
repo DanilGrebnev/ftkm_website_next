@@ -12,7 +12,7 @@ export const ButtonContainer = () => {
     const { isCompleteMoreNews } = useMoreNewsComplete()
     const loading = useNewsListStore((s) => s.loading)
 
-    const text = isCompleteMoreNews ? 'новости кончались' : 'загрузить ещё'
+    const text = isCompleteMoreNews ? 'Это все новости' : 'загрузить ещё'
 
     return (
         <div className={s.btnContainer}>

@@ -1,22 +1,22 @@
 import { LoadingButton } from '@UI/LoadingButton'
-
-import s from './s.module.scss'
 import { useGetNewsQuery } from '@/entities/article/model/api/newsApiHooks'
 
+import s from './s.module.scss'
+
 export const ButtonContainer = () => {
-    const { isFetching, fetchNextPage } = useGetNewsQuery()
+    const { hasNextPage, isFetchingNextPage, fetchNextPage } = useGetNewsQuery()
+
+    const text = hasNextPage ? 'Загрузить ещё' : 'Это все новости'
 
     return (
         <div className={s.btnContainer}>
-            {
-                <LoadingButton
-                    text='Загрузить ещё'
-                    size='medium'
-                    disabled={isFetching}
-                    loading={isFetching}
-                    onClick={fetchNextPage}
-                />
-            }
+            <LoadingButton
+                text={text}
+                size='medium'
+                disabled={!hasNextPage || isFetchingNextPage}
+                loading={isFetchingNextPage}
+                onClick={() => fetchNextPage()}
+            />
         </div>
     )
 }

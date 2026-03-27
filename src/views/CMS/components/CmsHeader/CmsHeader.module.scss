@@ -1,0 +1,29 @@
+@import '@variables';
+
+.bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: adaptiveSize(16, 10);
+    padding: adaptiveSize(12, 10) 0;
+    border-bottom: 1px solid $mui-blue;
+    box-sizing: border-box;
+}
+
+.left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: adaptiveSize(12, 8);
+}
+
+.right {
+    margin-left: auto;
+}
+
+.btn {
+    a {
+        width: fit-content;
+        color: var(--global-palette-1, rgba(16, 6, 159, 1));
+    }
+}
