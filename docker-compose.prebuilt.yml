@@ -1,6 +1,14 @@
-version: "3.9"
+# Запуск уже собранного образа приложения + MongoDB.
+#
+# Сборка образа приложения (на хосте после yarn build):
+#   docker build -f Dockerfile.prebuilt -t next_app:latest .
+#
+# Запуск:
+#   docker compose -f docker-compose.prebuilt.yml up
+#
+# Переменные — из .env в корне проекта.
 
-# Подстановка ${…} из файла .env в корне проекта (рядом с compose).
+version: "3.9"
 
 services:
   mongodb:
@@ -26,9 +34,7 @@ services:
       start_period: 20s
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ${DOCKER_APP_IMAGE:-next_app:latest}
     container_name: next_app
     restart: unless-stopped
     depends_on:
@@ -40,7 +46,6 @@ services:
       - .env
     environment:
       PORT: ${FRONTEND_PORT:-3000}
-      # Хост/порт Mongo внутри сети compose (URI собирается из .env как MONGODB_URI с ${…})
       MONGO_DB_HOST: mongodb
       MONGO_DB_PORT: "27017"
 

@@ -14,6 +14,9 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# сбрасываем артефакт хоста/CI, сборка только внутри образа
+RUN rm -rf .next
+
 RUN yarn build
 
 FROM base AS runner
@@ -27,6 +30,7 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 
+# Порт процесса задаётся в runtime через env PORT (см. docker-compose)
 EXPOSE 3000
 
 CMD ["yarn", "start"]

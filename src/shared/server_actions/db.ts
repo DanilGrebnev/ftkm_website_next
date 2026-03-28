@@ -1,10 +1,51 @@
-﻿import mongoose from "mongoose";
+import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
+/** Поля, которые в URI должны быть percent-encoded */
+const MONGO_URI_ENCODE_KEYS = new Set([
+  "MONGO_INITDB_ROOT_USERNAME",
+  "MONGO_INITDB_ROOT_PASSWORD",
+]);
 
-if (!MONGODB_URI) {
-  throw new Error("MONGODB_URI is not defined in environment variables");
+function expandMongoUriTemplate(template: string): string {
+  return template.replace(/\$\{([A-Z0-9_]+)\}/gi, (_, key: string) => {
+    const value = process.env[key];
+    if (value === undefined || value === "") {
+      throw new Error(
+        `MONGODB_URI ссылается на ${key}, но переменная не задана в окружении`
+      );
+    }
+    return MONGO_URI_ENCODE_KEYS.has(key)
+      ? encodeURIComponent(value)
+      : value;
+  });
 }
+
+function buildMongoUriFromParts(): string {
+  const user = process.env.MONGO_INITDB_ROOT_USERNAME;
+  const pass = process.env.MONGO_INITDB_ROOT_PASSWORD;
+  const host = process.env.MONGO_DB_HOST ?? "localhost";
+  const port = process.env.MONGO_DB_PORT ?? "27017";
+  const db = process.env.MONGO_AUTH_DB ?? "admin";
+  if (!user || !pass) {
+    throw new Error(
+      "Задайте MONGODB_URI или пару MONGO_INITDB_ROOT_USERNAME + MONGO_INITDB_ROOT_PASSWORD и MONGO_DB_HOST / MONGO_DB_PORT / MONGO_AUTH_DB"
+    );
+  }
+  return `mongodb://${encodeURIComponent(user)}:${encodeURIComponent(pass)}@${host}:${port}/${db}`;
+}
+
+function resolveMongoUri(): string {
+  const raw = process.env.MONGODB_URI?.trim();
+  if (!raw) {
+    return buildMongoUriFromParts();
+  }
+  if (raw.includes("${")) {
+    return expandMongoUriTemplate(raw);
+  }
+  return raw;
+}
+
+const MONGODB_URI = resolveMongoUri();
 
 let cached = (global as any).mongoose as {
   conn: typeof mongoose | null;
