@@ -15,11 +15,20 @@
 .InputContainer {
     display: flex;
     width: max-content;
+    max-width: min(100vw - 32px, 520px);
     flex-direction: column;
     padding: 40px;
     border-radius: 1em;
     background: white;
     gap: 20px;
+    box-sizing: border-box;
+}
+
+.sessionNote {
+    margin: 0;
+    line-height: 1.5;
+    color: $text-secondary;
+    @include font-16;
 }
 
 .TextField {

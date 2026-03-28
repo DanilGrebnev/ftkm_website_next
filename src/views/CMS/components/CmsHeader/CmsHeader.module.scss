@@ -18,7 +18,16 @@
 }
 
 .right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: adaptiveSize(10, 8);
     margin-left: auto;
+}
+
+.logoutBtn {
+    text-transform: none;
+    font-weight: 600;
 }
 
 .btn {
