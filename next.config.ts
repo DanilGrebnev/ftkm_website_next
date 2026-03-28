@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       "@mui/lab",
     ],
   },
-  // output: "standalone",
+  output: "standalone",
   images: {
     disableStaticImages: true,
   },

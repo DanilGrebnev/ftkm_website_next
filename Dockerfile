@@ -1,36 +1,30 @@
-# syntax=docker/dockerfile:1
-
-FROM node:20-alpine AS base
+FROM node:20-bookworm-slim AS base
 WORKDIR /app
-RUN apk add --no-cache libc6-compat
+
+ENV NEXT_TELEMETRY_DISABLED=1
 
 FROM base AS deps
+
 COPY package.json yarn.lock* ./
 RUN yarn install --frozen-lockfile
 
 FROM base AS builder
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV NEXT_TELEMETRY_DISABLED=1
-
-# сбрасываем артефакт хоста/CI, сборка только внутри образа
-RUN rm -rf .next
-
 RUN yarn build
 
-FROM base AS runner
+FROM node:20-bookworm-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
-# Порт процесса задаётся в runtime через env PORT (см. docker-compose)
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+CMD ["node", "server.js"]
