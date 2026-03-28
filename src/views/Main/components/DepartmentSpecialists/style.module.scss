@@ -13,28 +13,6 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: adaptiveSize(40, 24);
-  padding-bottom: adaptiveSize(20, 14);
-  position: relative;
-}
-
-.header::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: min(160px, 40%);
-  height: 3px;
-  border-radius: 2px;
-  transform: translateX(-50%);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    color-mix(in srgb, $main-blue 50%, transparent),
-    $main-blue,
-    color-mix(in srgb, $main-blue 50%, transparent),
-    transparent
-  );
-  opacity: 0.75;
 }
 
 .title {

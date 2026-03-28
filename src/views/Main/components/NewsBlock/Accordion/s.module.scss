@@ -1,10 +1,35 @@
-@import '@variables';
+@import "@variables";
 
 .accordion {
-    border-radius: 4px !important;
-    box-shadow: none !important;
+  border-radius: adaptiveSize(12, 8) !important;
+  border: 1px solid color-mix(in srgb, $main-blue 22%, transparent) !important;
+  box-shadow: 0 4px 20px rgb(16 6 159 / 0.08) !important;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, white 96%, $main-blue 4%) 0%,
+    white 40%
+  ) !important;
+
+  &::before {
+    display: none !important;
+  }
+
+  :global(.MuiAccordionSummary-root) {
+    min-height: 56px;
+    padding: 12px 16px;
+    font-weight: 600;
+    @include font-18;
+    color: rgba(0, 0, 0, 0.88);
+  }
+
+  :global(.MuiAccordionSummary-expandIconWrapper) {
+    color: $main-blue;
+  }
 }
 
-.accordion::before {
-    display: none !important;
+.accordionDetails {
+  padding: adaptiveSize(12, 10) adaptiveSize(16, 12) adaptiveSize(20, 16) !important;
+  border-top: 1px solid color-mix(in srgb, $main-blue 12%, transparent);
+  background: white;
 }

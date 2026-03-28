@@ -1,0 +1,107 @@
+@import "@variables";
+
+.section {
+  @include mr-t-b;
+  @include pd-t-b;
+}
+
+.card {
+  width: 100%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  padding: adaptiveSize(40, 26) adaptiveSize(36, 22);
+  text-align: center;
+  border-radius: adaptiveSize(16, 12);
+  border: 1px solid color-mix(in srgb, $main-blue 18%, transparent);
+  border-left: 4px solid $main-blue;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, $main-blue 9%, white 91%) 0%,
+    color-mix(in srgb, $main-blue 4%, white 96%) 45%,
+    white 100%
+  );
+  box-shadow:
+    0 8px 32px rgb(16 6 159 / 0.1),
+    0 2px 8px rgb(0 0 0 / 0.04);
+}
+
+.title {
+  margin: 0;
+  @include font-42;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: rgba(0, 0, 0, 0.9);
+  text-wrap: balance;
+}
+
+.titleAccent {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(
+    117deg,
+    color-mix(in srgb, $main-blue 92%, black) 0%,
+    $main-blue 45%,
+    color-mix(in srgb, $main-blue 75%, white) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.subtitle {
+  margin: adaptiveSize(18, 12) auto 0;
+  max-width: min(48rem, 100%);
+  @include font-20;
+  font-weight: 500;
+  line-height: 1.5;
+  color: $text-secondary;
+  text-wrap: balance;
+}
+
+.cta {
+  margin-top: adaptiveSize(28, 18);
+  cursor: pointer;
+  padding: adaptiveSize(16, 12) adaptiveSize(40, 26);
+  border: none;
+  border-radius: adaptiveSize(12, 10);
+  background: $main-blue;
+  color: $color-w;
+  font-family: inherit;
+  font-weight: 600;
+  @include font-20;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 18px rgb(16 6 159 / 0.35);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+  &:hover {
+    background-color: color-mix(in srgb, $main-blue 90%, black);
+    box-shadow: 0 6px 24px rgb(16 6 159 / 0.4);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $main-blue;
+    outline-offset: 3px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    border-left-width: 3px;
+    border-radius: adaptiveSize(14, 10);
+  }
+
+  .cta {
+    width: 100%;
+    max-width: 100%;
+    @include font-18;
+    padding-left: adaptiveSize(18, 14);
+    padding-right: adaptiveSize(18, 14);
+  }
+}

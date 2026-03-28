@@ -10,8 +10,9 @@ import { LazyAccordion } from './Accordion/LazyAccordion'
 import { ButtonArchive } from './ButtonArchive'
 import { LazyNewsList } from './NewsList/LazyNewsList'
 import s from './style.module.scss'
-import { globalVariables } from '@globalVariables'
 import { INewsItem } from '@/entities/article/model/server_actions/types/News'
+
+const MAIN_NEWS_PREVIEW_LIMIT = 8
 
 export const NewsBlock = () => {
     const [lastNews, setLastNews] = useState<INewsItem[]>([])
@@ -20,18 +21,30 @@ export const NewsBlock = () => {
 
     useEffect(() => {
         if (!active) return
-        getLastNews(globalVariables.limit).then((result) => {
+        getLastNews(MAIN_NEWS_PREVIEW_LIMIT).then((result) => {
             setLastNews(result.data as any)
         })
     }, [active])
 
     return (
         <Container
-            id='News-Block'
+            id="News-Block"
             className={s.wrapper}
-            maxWidth='xl'
+            maxWidth="xl"
             ref={ref}
+            component="section"
         >
+            <header className={s.header}>
+                <h2 className={s.title}>
+                    Последние{' '}
+                    <span className={s.titleAccent}>новости</span>
+                </h2>
+                <p className={s.subtitle}>
+                    События и публикации кафедры металлургии и литейного
+                    производства
+                </p>
+            </header>
+
             {!!lastNews.length && active && currentWidth >= 750 && (
                 <LazyNewsList className={s['news-block-desktop']} lastNews={lastNews} />
             )}

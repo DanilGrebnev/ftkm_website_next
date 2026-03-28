@@ -1,5 +1,6 @@
 import { ImgComponent } from '@/shared/ui/ImgComponent'
 import { Grid } from '@components/Grid'
+import Link from 'next/link'
 import React from 'react'
 
 import s from './style.module.scss'
@@ -9,28 +10,34 @@ interface IFooter {
 }
 
 export const Footer: React.FC<IFooter> = ({ style }) => {
+    const year = new Date().getFullYear()
+
     return (
-        <section
+        <footer
             style={style}
             className={`Footer ${s.Footer}`}
         >
-            <a href='/'>
-                <Grid className={s.Grid}>
+            <Grid className={s.inner}>
+                <Link
+                    href="/"
+                    className={s.logoLink}
+                    aria-label="На главную — ВолгГТУ, кафедра МиТЛП"
+                >
                     <ImgComponent
-                        alt='ВолгГТУ сайт МиТЛП'
-                        src='images/Logo_vstu.webp'
+                        alt="ВолгГТУ сайт МиТЛП"
+                        src="images/Logo_vstu.webp"
                     />
-                    <p>
-                        Кафедра{' '}
-                        <q style={{ lineHeight: 'normal' }}>
-                            Машины и технология литейного производства
-                        </q>
-                    </p>
-                    <p>
-                        © {new Date().getFullYear()} Кафедра <q>МиТЛП</q>
-                    </p>
-                </Grid>
-            </a>
-        </section>
+                </Link>
+                <p className={s.dept}>
+                    Кафедра{' '}
+                    <span className={s.deptName}>
+                        Машины и технология литейного производства
+                    </span>
+                </p>
+                <p className={s.copy}>
+                    © {year} Кафедра <span className={s.abbr}>МиТЛП</span>
+                </p>
+            </Grid>
+        </footer>
     )
 }

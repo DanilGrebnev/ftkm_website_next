@@ -1,48 +1,113 @@
-@import '@variables';
+@import "@variables";
+
+.headerFlowSpacer {
+  flex-shrink: 0;
+  width: 100%;
+  pointer-events: none;
+}
 
 .headerWrapper {
-    position: relative;
+  position: relative;
+  width: 100%;
+}
+
+.headerFixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+}
+
+.headerEnter {
+  animation: headerPinIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform;
+}
+
+.headerExit {
+  animation: headerPinOut 0.34s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform;
+}
+
+@keyframes headerPinIn {
+  from {
+    opacity: 0.92;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes headerPinOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0.92;
+    transform: translateY(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headerEnter,
+  .headerExit {
+    animation: none !important;
+    will-change: auto;
+  }
 }
 
 .Header {
-    &.Header {
-        background: var(--global-palette-1, rgba(16, 6, 159, 1)) !important;
-        background-color: var(--global-palette-1, rgba(16, 6, 159, 1)) !important;
-    }
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.12);
 
-    a {
-        .Btn {
-            color: var(--global-palette-3, white);
-            cursor: pointer;
-            font-weight: 600;
-        }
+  &.Header {
+    background: var(--global-palette-1, rgba(16, 6, 159, 1)) !important;
+    background-color: var(--global-palette-1, rgba(16, 6, 159, 1)) !important;
+  }
+
+  a {
+    .Btn {
+      color: var(--global-palette-3, white);
+      cursor: pointer;
+      font-weight: 600;
     }
+  }
+}
+
+.toolbar {
+  padding-top: adaptiveSize(18, 12);
+  padding-bottom: adaptiveSize(18, 12);
+  min-height: unset !important;
 }
 
 .vstuIcon {
-    img {
-        max-width: 150px;
-    }
+  img {
+    max-width: 150px;
+  }
 }
 
 .box {
-    justify-content: center;
+  justify-content: center;
 }
 
 .burger-menu {
-    display: none;
+  display: none;
 }
 
 @media screen and (max-width: 1024px) {
-    .vstuIcon {
-        flex-grow: 1;
-    }
+  .vstuIcon {
+    flex-grow: 1;
+  }
 
-    .Box2 {
-        display: none !important;
-    }
+  .Box2 {
+    display: none !important;
+  }
 
-    .burger-menu {
-        display: block;
-    }
+  .burger-menu {
+    display: block;
+  }
 }
