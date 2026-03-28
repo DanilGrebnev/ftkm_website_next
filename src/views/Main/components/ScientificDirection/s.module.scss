@@ -1,38 +1,143 @@
-@import '@variables';
+@import "@variables";
 
 .ScientificDirection {
-    b {
-        font-weight: normal;
-    }
-    h2 {
-        @include mr-t-b;
-        @include font-42;
+  @include mr-t-b;
+  @include pd-t-b;
+
+  b {
+    font-weight: normal;
+  }
+
+  .header {
+    text-align: center;
+    width: 100%;
+    max-width: min(64rem, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: adaptiveSize(36, 22);
+    padding-bottom: adaptiveSize(20, 14);
+    position: relative;
+  }
+
+  .header::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: min(160px, 40%);
+    height: 3px;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, $main-blue 50%, transparent),
+      $main-blue,
+      color-mix(in srgb, $main-blue 50%, transparent),
+      transparent
+    );
+    opacity: 0.75;
+  }
+
+  .title {
+    @include font-42;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: rgba(0, 0, 0, 0.9);
+    text-wrap: balance;
+  }
+
+  .titleAccent {
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: linear-gradient(
+      117deg,
+      color-mix(in srgb, $main-blue 92%, black) 0%,
+      $main-blue 45%,
+      color-mix(in srgb, $main-blue 75%, white) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .panel {
+    width: 100%;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding: adaptiveSize(32, 22) adaptiveSize(36, 24);
+    padding-left: adaptiveSize(28, 18);
+    border-left: 4px solid $main-blue;
+    border-radius: 0 adaptiveSize(12, 8) adaptiveSize(12, 8) 0;
+    background: linear-gradient(
+      105deg,
+      color-mix(in srgb, $main-blue 8%, white 92%) 0%,
+      color-mix(in srgb, $main-blue 3%, white 97%) 55%,
+      white 100%
+    );
+    box-shadow: 0 4px 24px rgb(16 6 159 / 0.07);
+  }
+
+  .listBlock {
+    h3 {
+      margin-top: 0;
+      margin-bottom: adaptiveSize(22, 14);
+      @include font-24;
+      font-weight: 600;
+      line-height: 1.35;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.88);
+      text-wrap: balance;
     }
 
-    h3 {
-        @include font-24;
-        @include custom-mr-t-b(20);
-        text-align: start;
+    ul {
+      margin: 0;
+      padding-left: 1.25em;
+      list-style: disc;
     }
 
     li {
-        @include font-22;
-        @include mr-left-50;
-
-        line-height: 2;
-        list-style: disc;
+      margin: 0 0 adaptiveSize(8, 6);
+      margin-left: 0;
+      padding: 0;
+      @include font-22;
+      line-height: 1.55;
+      color: rgba(0, 0, 0, 0.88);
+      text-align: left;
+      list-style: inherit;
     }
-}
 
-.results {
-    margin-top: 1em;
-    @include font-22;
-    text-align: justify;
-    line-height: 2;
+    li:last-child {
+      margin-bottom: 0;
+    }
+  }
 
+  .results {
+    width: 100%;
+    max-width: none;
+    margin: adaptiveSize(36, 22) auto 0;
+    padding: adaptiveSize(28, 18) adaptiveSize(32, 20);
+    padding-left: adaptiveSize(28, 18);
+    border-left: 3px solid color-mix(in srgb, $main-blue 65%, gray);
+    border-radius: 0 adaptiveSize(10, 6) adaptiveSize(10, 6) 0;
+    background: color-mix(in srgb, $main-blue 4%, white 96%);
+    @include font-20;
+    line-height: 1.55;
     font-weight: 600;
+    color: rgba(0, 0, 0, 0.82);
+    text-align: left;
+    text-wrap: pretty;
+  }
 
-    &:before {
-        @include redLine;
+  @media screen and (max-width: 600px) {
+    .panel,
+    .results {
+      border-radius: adaptiveSize(12, 8);
+      border-left-width: 3px;
     }
+  }
 }
