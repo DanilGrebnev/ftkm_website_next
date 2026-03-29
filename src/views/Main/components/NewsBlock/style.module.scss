@@ -77,3 +77,21 @@
     max-height: 250px;
   }
 }
+
+.emptyCard {
+  width: 100%;
+  max-width: 560px;
+  padding: adaptiveSize(36, 24);
+  border: 2px dashed rgba(16, 6, 159, 0.2);
+  border-radius: adaptiveSize(16, 12);
+  margin: adaptiveSize(24, 16) auto 0;
+  background: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+.emptyHint {
+  @include font-20;
+  margin: 0;
+  color: $text-secondary;
+  line-height: 1.5;
+}

@@ -1,7 +1,10 @@
 'use server'
 
 import { dbConnect } from '@/shared/server_actions/db'
-import { withServerErrorLog } from '@/shared/server_actions/logServerError'
+import {
+    logServerError,
+    withServerErrorLog,
+} from '@/shared/server_actions/logServerError'
 import { NewsModel } from '@/entities/article/model/server_actions/models/News'
 import { revalidatePath } from 'next/cache'
 import { getSession } from '@/entities/auth/model/server_actions/auth'
@@ -77,6 +80,23 @@ export async function getLastNews(amount: number = 3) {
     )
 }
 
+export type LastNewsForHomeResult =
+    | { ok: true; data: unknown[] }
+    | { ok: false }
+
+/** Главная (публичная): без throw; ok:false при ошибке БД. */
+export async function getLastNewsForPublicHome(
+    limit: number
+): Promise<LastNewsForHomeResult> {
+    try {
+        const { data } = await getNewsPageCore({ skip: 0, limit })
+        return { ok: true, data }
+    } catch (error) {
+        logServerError('Получение последних новостей (главная, публично)', error)
+        return { ok: false }
+    }
+}
+
 export async function getNewsById(id: string) {
     return withServerErrorLog(`Получение новости по id (${id})`, async () => {
         await dbConnect()
@@ -85,6 +105,43 @@ export async function getNewsById(id: string) {
         if (!doc) return null
 
         return serialize(doc)
+    })
+}
+
+/** Лёгкая выборка только для SEO (metadata). */
+export async function getNewsMetaById(
+    id: string
+): Promise<{ title: string; body: string } | null> {
+    return withServerErrorLog(`SEO: новость по id (${id})`, async () => {
+        await dbConnect()
+        const doc = await NewsModel.findById(id)
+            .select('title body')
+            .lean()
+            .exec()
+        if (!doc) return null
+        return { title: doc.title, body: doc.body }
+    })
+}
+
+/** Список id для sitemap (без тела новостей). */
+export async function getAllNewsIdsForSitemap(): Promise<
+    { id: string; lastModified: Date }[]
+> {
+    return withServerErrorLog('Список id новостей для sitemap', async () => {
+        await dbConnect()
+
+        const docs = await NewsModel.find({})
+            .select('_id createdDate')
+            .sort({ _id: -1 })
+            .lean()
+            .exec()
+
+        return docs.map((doc) => ({
+            id: String(doc._id),
+            lastModified: (doc.createdDate
+                ? new Date(doc.createdDate)
+                : new Date()) as Date,
+        }))
     })
 }
 

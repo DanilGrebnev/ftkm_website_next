@@ -1,11 +1,9 @@
-'use client'
-
-import { App } from '@/App'
+import { App } from "@/App";
 
 export default function SiteLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode
+  children: React.ReactNode;
 }) {
-    return <App>{children}</App>
+  return <App>{children}</App>;
 }

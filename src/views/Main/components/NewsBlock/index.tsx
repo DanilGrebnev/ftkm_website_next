@@ -40,8 +40,7 @@ export const NewsBlock = () => {
                     <span className={s.titleAccent}>новости</span>
                 </h2>
                 <p className={s.subtitle}>
-                    События и публикации кафедры металлургии и литейного
-                    производства
+                    События и публикации кафедры
                 </p>
             </header>
 

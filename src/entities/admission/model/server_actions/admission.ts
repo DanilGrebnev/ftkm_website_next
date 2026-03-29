@@ -1,7 +1,10 @@
 'use server'
 
 import { dbConnect } from '@/shared/server_actions/db'
-import { withServerErrorLog } from '@/shared/server_actions/logServerError'
+import {
+    logServerError,
+    withServerErrorLog,
+} from '@/shared/server_actions/logServerError'
 import {
     ADMISSION_SETTINGS_ID,
     AdmissionSettingsModel,
@@ -31,6 +34,28 @@ export async function getAdmissionSettings(): Promise<{
 
         return { items: serializeItems(doc) }
     })
+}
+
+/** Публичная главная: при ошибке БД не бросает исключение. */
+export async function getAdmissionSettingsForPublicPage(): Promise<{
+    items: IAdmissionItem[]
+}> {
+    try {
+        await dbConnect()
+
+        const doc = await AdmissionSettingsModel.findById(ADMISSION_SETTINGS_ID)
+            .lean()
+            .exec()
+
+        if (!doc) {
+            return { items: [] }
+        }
+
+        return { items: serializeItems(doc) }
+    } catch (error) {
+        logServerError('Получение настроек поступления (главная, публично)', error)
+        return { items: [] }
+    }
 }
 
 function normalizeItems(raw: unknown): IAdmissionItem[] {
