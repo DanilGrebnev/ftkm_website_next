@@ -1,32 +1,47 @@
-import { Suspense } from "react";
+'use client'
 
-import { getLastNewsForPublicHome } from "@/entities/article/api/actions/news";
-import type { INewsItem } from "@/entities/article/api/types/News";
-import { NewsBlockClient } from "@/views/Main/components/NewsBlock/NewsBlockClient";
+import { getLastNews } from '@/entities/article/api/actions/news'
+import type { INewsItem } from '@/entities/article/api/types/News'
+import { NewsBlockClient } from '@/views/Main/components/NewsBlock/NewsBlockClient'
+import { useEffect, useState } from 'react'
 
-import { NewsHomeDegraded } from "./NewsHomeDegraded";
+import { NewsHomeDegraded } from './NewsHomeDegraded'
 
-const MAIN_NEWS_PREVIEW_LIMIT = 8;
+const MAIN_NEWS_PREVIEW_LIMIT = 8
 
-async function NewsHomeStream() {
-  const result = await getLastNewsForPublicHome(MAIN_NEWS_PREVIEW_LIMIT);
-
-  if (!result.ok) {
-    return <NewsHomeDegraded />;
-  }
-
-  const items = result.data as INewsItem[];
-  if (!items.length) {
-    return <NewsHomeDegraded />;
-  }
-
-  return <NewsBlockClient lastNews={items} />;
-}
+type Phase = 'loading' | 'ok' | 'degraded'
 
 export function HomeNewsWidget() {
-  return (
-    <Suspense fallback={<NewsBlockClient lastNews={[]} />}>
-      <NewsHomeStream />
-    </Suspense>
-  );
+  const [phase, setPhase] = useState<Phase>('loading')
+  const [items, setItems] = useState<INewsItem[]>([])
+
+  useEffect(() => {
+    let cancelled = false
+
+    ;(async () => {
+      try {
+        const result = await getLastNews(MAIN_NEWS_PREVIEW_LIMIT)
+        if (cancelled) return
+        const data = result.data as INewsItem[]
+        if (!data?.length) {
+          setPhase('degraded')
+          return
+        }
+        setItems(data)
+        setPhase('ok')
+      } catch {
+        if (!cancelled) setPhase('degraded')
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  if (phase === 'degraded') {
+    return <NewsHomeDegraded />
+  }
+
+  return <NewsBlockClient lastNews={phase === 'loading' ? [] : items} />
 }

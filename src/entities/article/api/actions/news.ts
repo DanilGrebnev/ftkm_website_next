@@ -1,10 +1,7 @@
 'use server'
 
 import { dbConnect } from '@/shared/api/mongoClient'
-import {
-    logServerError,
-    withServerErrorLog,
-} from '@/shared/lib/logServerError'
+import { withServerErrorLog } from '@/shared/lib/logServerError'
 import { NewsModel } from '@/entities/article/api/models/news'
 import { revalidatePath } from 'next/cache'
 import { getSession } from '@/entities/auth/api/actions/auth'
@@ -78,23 +75,6 @@ export async function getLastNews(amount: number = 3) {
     return withServerErrorLog('Получение последних новостей', () =>
         getNewsPageCore({ skip: 0, limit: amount })
     )
-}
-
-export type LastNewsForHomeResult =
-    | { ok: true; data: unknown[] }
-    | { ok: false }
-
-/** Главная (публичная): без throw; ok:false при ошибке БД. */
-export async function getLastNewsForPublicHome(
-    limit: number
-): Promise<LastNewsForHomeResult> {
-    try {
-        const { data } = await getNewsPageCore({ skip: 0, limit })
-        return { ok: true, data }
-    } catch (error) {
-        logServerError('Получение последних новостей (главная, публично)', error)
-        return { ok: false }
-    }
 }
 
 export async function getNewsById(id: string) {
