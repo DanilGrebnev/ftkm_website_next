@@ -1,6 +1,6 @@
 'use client'
 
-import { getSession } from '@/entities/auth/model/server_actions/auth'
+import { getSession } from '@/entities/auth/api/actions/auth'
 import { useRouter } from 'next/navigation'
 import { FC, useEffect, useState } from 'react'
 

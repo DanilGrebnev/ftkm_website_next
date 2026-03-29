@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getAllNewsIdsForSitemap } from "@/entities/article/model/server_actions/news";
+import { getAllNewsIdsForSitemap } from "@/entities/article/api/actions/news";
 import { getMetadataBaseUrl } from "@/shared/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

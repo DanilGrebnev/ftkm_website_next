@@ -1,9 +1,14 @@
-import { logServerError } from '@/shared/server_actions/logServerError'
+import {
+    ADMIN_LOGIN,
+    ADMIN_PASSWORD,
+    NEXT_RUNTIME,
+} from '@/shared/settings/settings'
+import { logServerError } from '@/shared/lib/logServerError'
 
 export async function register() {
-    if (process.env.NEXT_RUNTIME === 'nodejs') {
-        const login = process.env.ADMIN_LOGIN
-        const password = process.env.ADMIN_PASSWORD
+    if (NEXT_RUNTIME === 'nodejs') {
+        const login = ADMIN_LOGIN
+        const password = ADMIN_PASSWORD
 
         if (!login || !password) {
             console.log('[seed] ADMIN_LOGIN or ADMIN_PASSWORD not set, skipping user seed')
@@ -11,9 +16,9 @@ export async function register() {
         }
 
         try {
-            const { dbConnect } = await import('@/shared/server_actions/db')
+            const { dbConnect } = await import('@/shared/api/mongoClient')
             const { UserModel } = await import(
-                '@/entities/auth/model/server_actions/models/User'
+                '@/entities/auth/api/models/user'
             )
 
             await dbConnect()

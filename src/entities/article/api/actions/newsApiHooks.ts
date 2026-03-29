@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { newsApiKeys } from './newsApiKeys'
-import { getNewsPage } from '@/entities/article/model/server_actions/news'
+import { getNewsPage } from '@/entities/article/api/actions/news'
 import { globalVariables } from '@globalVariables'
 
 export const useGetNewsQuery = () => {

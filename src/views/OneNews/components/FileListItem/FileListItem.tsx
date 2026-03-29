@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { INewsFiles } from '@/entities/article/model/server_actions/types/News'
+import { INewsFiles } from '@/entities/article/api/types/News'
 import { createHrefToFile } from '@/shared/utils/createHrefToFile'
 import { sliceExtensionInString } from '@/shared/utils/sliceExtensionString'
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded'

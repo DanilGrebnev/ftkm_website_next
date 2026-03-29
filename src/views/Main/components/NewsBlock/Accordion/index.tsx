@@ -1,5 +1,5 @@
 import { AccordionBlock } from '@UI/Accordion'
-import { INewsItem } from '@/entities/article/model/server_actions/types/News'
+import { INewsItem } from '@/entities/article/api/types/News'
 import { FC, memo } from 'react'
 
 import { LazyNewsList } from '../NewsList/LazyNewsList'

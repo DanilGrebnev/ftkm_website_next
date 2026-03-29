@@ -1,6 +1,6 @@
 import { Container } from '@mui/material'
 
-import type { IAdmissionItem } from '@/entities/admission/model/server_actions/types/AdmissionItem'
+import type { IAdmissionItem } from '@/entities/admission/api/types/AdmissionItem'
 
 import s from './style.module.scss'
 

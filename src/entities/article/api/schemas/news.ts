@@ -1,4 +1,6 @@
-import mongoose, { Schema, Document, Model } from 'mongoose'
+import 'server-only'
+
+import mongoose, { Schema, Document } from 'mongoose'
 
 export interface IFileDoc {
     newsId: string
@@ -32,7 +34,7 @@ function generateCreatedDate(): number {
     return new Date(dateStr).getTime()
 }
 
-const NewsSchema = new Schema<INewsDoc>(
+export const NewsSchema = new Schema<INewsDoc>(
     {
         title: { type: String, required: true },
         body: { type: String, required: true },
@@ -42,6 +44,3 @@ const NewsSchema = new Schema<INewsDoc>(
     },
     { versionKey: false }
 )
-
-export const NewsModel: Model<INewsDoc> =
-    mongoose.models.News || mongoose.model<INewsDoc>('News', NewsSchema, 'news')

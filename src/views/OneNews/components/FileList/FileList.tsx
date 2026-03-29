@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { INewsFiles } from '@/entities/article/model/server_actions/types/News'
+import { INewsFiles } from '@/entities/article/api/types/News'
 import clsx from 'clsx'
 import { type FC } from 'react'
 

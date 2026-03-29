@@ -1,13 +1,13 @@
 'use server'
 
-import { dbConnect } from '@/shared/server_actions/db'
+import { dbConnect } from '@/shared/api/mongoClient'
 import {
     logServerError,
     withServerErrorLog,
-} from '@/shared/server_actions/logServerError'
-import { NewsModel } from '@/entities/article/model/server_actions/models/News'
+} from '@/shared/lib/logServerError'
+import { NewsModel } from '@/entities/article/api/models/news'
 import { revalidatePath } from 'next/cache'
-import { getSession } from '@/entities/auth/model/server_actions/auth'
+import { getSession } from '@/entities/auth/api/actions/auth'
 
 export interface NewsFilters {
     title?: string

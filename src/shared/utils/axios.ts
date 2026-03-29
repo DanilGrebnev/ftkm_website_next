@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+import { NEXT_PUBLIC_BASE_URL } from '@/shared/settings/settings'
+
 const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+    baseURL: NEXT_PUBLIC_BASE_URL,
 })
 
 instance.interceptors.request.use((config) => {

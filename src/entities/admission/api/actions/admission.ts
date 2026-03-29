@@ -1,16 +1,14 @@
 'use server'
 
-import { dbConnect } from '@/shared/server_actions/db'
+import { dbConnect } from '@/shared/api/mongoClient'
 import {
     logServerError,
     withServerErrorLog,
-} from '@/shared/server_actions/logServerError'
-import {
-    ADMISSION_SETTINGS_ID,
-    AdmissionSettingsModel,
-} from '@/entities/admission/model/server_actions/models/AdmissionSettings'
-import { getSession } from '@/entities/auth/model/server_actions/auth'
-import type { IAdmissionItem } from '@/entities/admission/model/server_actions/types/AdmissionItem'
+} from '@/shared/lib/logServerError'
+import { ADMISSION_SETTINGS_ID } from '@/entities/admission/api/schemas/admissionSettings'
+import { AdmissionSettingsModel } from '@/entities/admission/api/models/admissionSettings'
+import { getSession } from '@/entities/auth/api/actions/auth'
+import type { IAdmissionItem } from '@/entities/admission/api/types/AdmissionItem'
 import { revalidatePath } from 'next/cache'
 
 function serializeItems(doc: { items: IAdmissionItem[] } | null): IAdmissionItem[] {

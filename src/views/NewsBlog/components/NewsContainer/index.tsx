@@ -3,7 +3,7 @@ import { Grid } from '@components/Grid'
 import clsx from 'clsx'
 
 import s from './s.module.scss'
-import { useGetNewsQuery } from '@/entities/article/model/api/newsApiHooks'
+import { useGetNewsQuery } from '@/entities/article/api/actions/newsApiHooks'
 
 // TODO: Компонент с новостями страницы новостей
 export const NewsContainer = () => {

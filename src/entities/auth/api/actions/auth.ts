@@ -1,14 +1,13 @@
 'use server'
 
-import { dbConnect } from '@/shared/server_actions/db'
-import { withServerErrorLog } from '@/shared/server_actions/logServerError'
-import { UserModel } from '@/entities/auth/model/server_actions/models/User'
+import { dbConnect } from '@/shared/api/mongoClient'
+import { withServerErrorLog } from '@/shared/lib/logServerError'
+import { UserModel } from '@/entities/auth/api/models/user'
+import { NODE_ENV, SECRET_JWT } from '@/shared/settings/settings'
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 
-const SECRET = new TextEncoder().encode(
-    process.env.SECRET_JWT || 'default-secret-change-me'
-)
+const SECRET = new TextEncoder().encode(SECRET_JWT)
 const COOKIE_NAME = 'session'
 const EXPIRATION = '7d'
 
@@ -38,7 +37,7 @@ export async function login(loginVal: string, password: string) {
         const cookieStore = await cookies()
         cookieStore.set(COOKIE_NAME, token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: NODE_ENV === 'production',
             sameSite: 'lax',
             path: '/',
             maxAge: 60 * 60 * 24 * 7,

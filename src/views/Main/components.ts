@@ -1,6 +1,6 @@
 export { BurgerMenuModal } from '@UI/BurgerMenu/BurgerMenuModal'
 export { NewsBlock } from './components/NewsBlock/index'
-export { Admission } from './components/Admission'
+export { Admission } from '@/entities/admission/ui/Admission'
 export { CardList } from './components/CardList'
 export { CareerOpportunities } from './components/CareerOpportunities'
 export { Hero } from './components/Hero'

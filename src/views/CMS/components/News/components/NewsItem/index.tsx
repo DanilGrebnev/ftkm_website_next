@@ -1,5 +1,5 @@
 import { useOpenModal } from '@hooks/useOpenModal'
-import { INewsItem } from '@/entities/article/model/server_actions/types/News'
+import { INewsItem } from '@/entities/article/api/types/News'
 import { FC } from 'react'
 
 import s from './NewsItem.module.scss'

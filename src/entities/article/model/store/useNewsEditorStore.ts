@@ -1,4 +1,4 @@
-import { INewsFiles } from '@/entities/article/model/server_actions/types/News'
+import { INewsFiles } from '@/entities/article/api/types/News'
 import { create } from 'zustand'
 
 interface NewsEditorState {

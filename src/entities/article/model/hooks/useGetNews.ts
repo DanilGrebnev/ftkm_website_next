@@ -1,4 +1,4 @@
-import { getNewsPage } from '@/entities/article/model/server_actions/news'
+import { getNewsPage } from '@/entities/article/api/actions/news'
 import { useNewsListStore } from '@/entities/article/model/store/useNewsListStore'
 import { globalVariables } from '@globalVariables'
 

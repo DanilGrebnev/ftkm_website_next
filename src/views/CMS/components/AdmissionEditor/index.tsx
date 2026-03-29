@@ -13,11 +13,11 @@ import {
 } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
 
-import type { IAdmissionItem } from '@/entities/admission/model/server_actions/types/AdmissionItem'
+import type { IAdmissionItem } from '@/entities/admission/api/types/AdmissionItem'
 import {
     getAdmissionSettings,
     saveAdmissionSettings,
-} from '@/entities/admission/model/server_actions/admission'
+} from '@/entities/admission/api/actions/admission'
 
 import s from './AdmissionEditor.module.scss'
 

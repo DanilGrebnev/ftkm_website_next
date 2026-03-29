@@ -1,9 +1,9 @@
 'use client'
 
-import { createNews, updateNews } from '@/entities/article/model/server_actions/news'
+import { createNews, updateNews } from '@/entities/article/api/actions/news'
 import { useNewsEditorStore } from '@/entities/article/model/store/useNewsEditorStore'
 import { useNewsListStore } from '@/entities/article/model/store/useNewsListStore'
-import { IBody } from '@/entities/article/model/server_actions/types/News'
+import { IBody } from '@/entities/article/api/types/News'
 import { API_RESPONSES } from '@API_RESPONSES'
 import { useRouter } from 'next/navigation'
 

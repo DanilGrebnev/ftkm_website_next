@@ -1,6 +1,6 @@
 'use client'
 
-import { getLastNews } from '@/entities/article/model/server_actions/news'
+import { getLastNews } from '@/entities/article/api/actions/news'
 import { useGetWindowWidth } from '@hooks/useGetWindowWidth'
 import { useShowIfIsView } from '@hooks/useShowIfIsView'
 import Container from '@mui/material/Container'
@@ -10,7 +10,7 @@ import { LazyAccordion } from './Accordion/LazyAccordion'
 import { ButtonArchive } from './ButtonArchive'
 import { LazyNewsList } from './NewsList/LazyNewsList'
 import s from './style.module.scss'
-import { INewsItem } from '@/entities/article/model/server_actions/types/News'
+import { INewsItem } from '@/entities/article/api/types/News'
 
 const MAIN_NEWS_PREVIEW_LIMIT = 8
 

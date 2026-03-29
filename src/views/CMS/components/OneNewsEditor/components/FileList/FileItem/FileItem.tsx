@@ -1,10 +1,10 @@
 'use client'
 
-import { INewsFiles } from '@/entities/article/model/server_actions/types/News'
+import { INewsFiles } from '@/entities/article/api/types/News'
 import { createHrefToFile } from '@/shared/utils/createHrefToFile'
 import { selectFileExtensionIcon } from '@/shared/utils/selectFileExtensionIcon'
 import { sliceExtensionInString } from '@/shared/utils/sliceExtensionString'
-import { deleteNewsFile } from '@/entities/article/model/server_actions/files'
+import { deleteNewsFile } from '@/entities/article/api/actions/files'
 import { useNewsEditorStore } from '@/entities/article/model/store/useNewsEditorStore'
 import dynamic from 'next/dynamic'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'

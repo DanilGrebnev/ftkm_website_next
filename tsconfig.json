@@ -30,7 +30,6 @@
       "@components/*": ["./src/shared/ui/*"],
       "@views/*": ["./src/views/*"],
       "@store/*": ["./src/shared/store/*"],
-      "@actions/*": ["./src/shared/server_actions/*"],
       "@constants/*": ["./src/shared/constants/*"]
     }
   },

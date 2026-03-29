@@ -1,5 +1,5 @@
-import { formatNewsCreatedDate } from '@/entities/article/lib/formatNewsCreatedDate'
-import { INewsItem } from '@/entities/article/model/server_actions/types/News'
+import { formatNewsCreatedDate } from '@/entities/article/model/utils/formatNewsCreatedDate'
+import { INewsItem } from '@/entities/article/api/types/News'
 import Link from 'next/link'
 import { FC, memo } from 'react'
 

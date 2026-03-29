@@ -1,5 +1,5 @@
 import { LoadingButton } from '@UI/LoadingButton'
-import { useGetNewsQuery } from '@/entities/article/model/api/newsApiHooks'
+import { useGetNewsQuery } from '@/entities/article/api/actions/newsApiHooks'
 
 import s from './s.module.scss'
 

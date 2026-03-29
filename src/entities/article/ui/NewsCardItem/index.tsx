@@ -1,7 +1,7 @@
 'use client'
 
-import { formatNewsCreatedDate } from '@/entities/article/lib/formatNewsCreatedDate'
-import { type INewsItem } from '@/entities/article/model/server_actions/types/News'
+import { formatNewsCreatedDate } from '@/entities/article/model/utils/formatNewsCreatedDate'
+import { type INewsItem } from '@/entities/article/api/types/News'
 import { TextareaView } from '@/shared/ui/ArticleBodyPreview/ArticleBodyPreview'
 import { selectFileExtensionIcon } from '@/shared/utils/selectFileExtensionIcon'
 import clsx from 'clsx'

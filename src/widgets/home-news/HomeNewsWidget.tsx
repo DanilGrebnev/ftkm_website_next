@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
-import { getLastNewsForPublicHome } from "@/entities/article/model/server_actions/news";
-import type { INewsItem } from "@/entities/article/model/server_actions/types/News";
+import { getLastNewsForPublicHome } from "@/entities/article/api/actions/news";
+import type { INewsItem } from "@/entities/article/api/types/News";
 import { NewsBlockClient } from "@/views/Main/components/NewsBlock/NewsBlockClient";
 
 import { NewsHomeDegraded } from "./NewsHomeDegraded";

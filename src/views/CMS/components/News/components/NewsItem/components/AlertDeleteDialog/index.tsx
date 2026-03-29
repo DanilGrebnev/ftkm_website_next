@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { deleteNews } from '@/entities/article/model/server_actions/news'
+import { deleteNews } from '@/entities/article/api/actions/news'
 import { useNewsListStore } from '@/entities/article/model/store/useNewsListStore'
 import { useGetNews } from '@/entities/article/model/hooks/useGetNews'
 

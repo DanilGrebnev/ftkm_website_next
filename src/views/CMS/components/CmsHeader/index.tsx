@@ -1,6 +1,6 @@
 'use client'
 
-import { logout } from '@/entities/auth/model/server_actions/auth'
+import { logout } from '@/entities/auth/api/actions/auth'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'

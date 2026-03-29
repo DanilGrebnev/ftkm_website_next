@@ -1,8 +1,7 @@
-const DEFAULT_SITE_URL = "http://mitlp.vstu.ru:8090";
+import { NEXT_PUBLIC_SITE_URL as siteUrlFromEnv } from "@/shared/settings/settings";
 
 export function getSiteUrlString(): string {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || DEFAULT_SITE_URL;
-  return raw.replace(/\/$/, "");
+  return siteUrlFromEnv.replace(/\/$/, "");
 }
 
 export function getMetadataBaseUrl(): URL {

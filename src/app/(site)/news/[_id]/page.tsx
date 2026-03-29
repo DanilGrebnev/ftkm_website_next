@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { cache } from "react";
 
-import { getNewsMetaById } from "@/entities/article/model/server_actions/news";
+import { getNewsMetaById } from "@/entities/article/api/actions/news";
 import {
   excerptFromNewsBody,
   getMetadataBaseUrl,

@@ -1,4 +1,4 @@
-import { getSession, logout } from '@/entities/auth/model/server_actions/auth'
+import { getSession, logout } from '@/entities/auth/api/actions/auth'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 

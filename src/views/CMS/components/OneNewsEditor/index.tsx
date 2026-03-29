@@ -1,8 +1,8 @@
 'use client'
 
 import { LoadingCircle } from '@/shared/ui/LoadingCircle'
-import { getNewsById } from '@/entities/article/model/server_actions/news'
-import { uploadNewsFile } from '@/entities/article/model/server_actions/files'
+import { getNewsById } from '@/entities/article/api/actions/news'
+import { uploadNewsFile } from '@/entities/article/api/actions/files'
 import { useNewsEditorStore } from '@/entities/article/model/store/useNewsEditorStore'
 import { AlertModal } from '@UI/AlertModal'
 import { returnAlertType } from '@lib/returnAlertType'

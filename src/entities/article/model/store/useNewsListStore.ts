@@ -1,4 +1,4 @@
-import { INewsItem } from '@/entities/article/model/server_actions/types/News'
+import { INewsItem } from '@/entities/article/api/types/News'
 import { create } from 'zustand'
 
 interface NewsListState {

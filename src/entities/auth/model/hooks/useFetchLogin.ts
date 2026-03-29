@@ -1,4 +1,4 @@
-import { login as loginAction } from '@/entities/auth/model/server_actions/auth'
+import { login as loginAction } from '@/entities/auth/api/actions/auth'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 

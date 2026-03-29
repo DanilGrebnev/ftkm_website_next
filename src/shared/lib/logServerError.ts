@@ -1,4 +1,4 @@
-﻿function formatError(error: unknown): string {
+function formatError(error: unknown): string {
     if (error instanceof Error) {
         return error.stack ? `${error.message}\n${error.stack}` : error.message
     }

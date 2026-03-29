@@ -3,7 +3,7 @@
 import { useGetWindowWidth } from "@hooks/useGetWindowWidth";
 import Container from "@mui/material/Container";
 
-import type { INewsItem } from "@/entities/article/model/server_actions/types/News";
+import type { INewsItem } from "@/entities/article/api/types/News";
 
 import { LazyAccordion } from "./Accordion/LazyAccordion";
 import { ButtonArchive } from "./ButtonArchive";
