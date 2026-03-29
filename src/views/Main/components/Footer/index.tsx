@@ -37,6 +37,12 @@ export const Footer: React.FC<IFooter> = ({ style }) => {
                 <p className={s.copy}>
                     © {year} Кафедра <span className={s.abbr}>МиТЛП</span>
                 </p>
+                <Link
+                    href="/login"
+                    className={s.loginLink}
+                >
+                    Войти
+                </Link>
             </Grid>
         </footer>
     )
