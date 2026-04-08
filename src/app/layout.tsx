@@ -33,6 +33,14 @@ export const metadata: Metadata = {
     follow: true,
   },
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/icon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    shortcut: "/icon/favicon.ico",
+    apple: "/icon/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "ru_RU",

@@ -40,10 +40,11 @@ export const Hero = () => {
                 autoPlay={true}
                 preload='metadata'
                 muted
-                poster='images/preloadmetallurgy.webp'
+                playsInline
+                poster='/images/preloadmetallurgy.webp'
                 style={{ height: calculatedHeight }}
             >
-                <source src='videos/metallurgy.mp4' />
+                <source src='/videos/metallurgy.mp4' />
             </video>
         </section>
     )
