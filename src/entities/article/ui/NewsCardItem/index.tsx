@@ -1,7 +1,7 @@
 'use client'
 
 import { formatNewsCreatedDate } from '@/entities/article/model/utils/formatNewsCreatedDate'
-import { type INewsItem } from '@/entities/article/api/types/News'
+import { type IArticleDTO } from '@/shared/api/requests/articles'
 import { TextareaView } from '@/shared/ui/ArticleBodyPreview/ArticleBodyPreview'
 import { selectFileExtensionIcon } from '@/shared/utils/selectFileExtensionIcon'
 import clsx from 'clsx'
@@ -10,7 +10,7 @@ import { memo } from 'react'
 
 import s from './style.module.scss'
 
-export const NewsCardItem: React.FC<INewsItem> = memo(
+export const NewsCardItem: React.FC<IArticleDTO> = memo(
     ({ title, body, createdDate, files, _id }) => {
         const router = useRouter()
 

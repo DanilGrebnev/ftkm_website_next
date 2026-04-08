@@ -1,8 +1,11 @@
 'use client'
 
 import { LoadingCircle } from '@/shared/ui/LoadingCircle'
-import { getNewsById } from '@/entities/article/api/actions/news'
-import { uploadNewsFile } from '@/entities/article/api/actions/files'
+import {
+    getArticleByIdServerAction,
+    uploadArticleFileServerAction,
+    type IArticleDTO,
+} from '@/shared/api/requests/articles'
 import { useNewsEditorStore } from '@/entities/article/model/store/useNewsEditorStore'
 import { AlertModal } from '@UI/AlertModal'
 import { returnAlertType } from '@lib/returnAlertType'
@@ -33,18 +36,19 @@ const OneNewsEditor = () => {
         if (!_id) return
 
         setLoading(true)
-        getNewsById(_id)
-            .then((data) => {
-                if (!data) {
+        getArticleByIdServerAction(_id)
+            .then((response) => {
+                const article = response.article as IArticleDTO | null
+                if (!article) {
                     alert('Новость не найдена')
                     router.push('/CMS')
                     return
                 }
                 loadFields({
-                    title: data.title,
-                    body: data.body,
-                    video: data.video,
-                    files: data.files,
+                    title: article.title,
+                    body: article.body,
+                    video: article.video,
+                    files: article.files,
                 })
             })
             .catch(() => {
@@ -71,8 +75,8 @@ const OneNewsEditor = () => {
 
         setLoadingFile(true)
         try {
-            const updatedFiles = await uploadNewsFile(_id, formData)
-            setFiles(updatedFiles as any)
+            const updatedFiles = await uploadArticleFileServerAction(_id, formData)
+            setFiles(updatedFiles.files)
         } catch {
             alert('Ошибка загрузки файла')
         } finally {

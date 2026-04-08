@@ -1,7 +1,13 @@
 "use client";
 
-import { useNewsEditorStore } from "@/entities/article/model/store/useNewsEditorStore";
 import { useEffect } from "react";
+
+import { useNewsEditorStore } from "@/entities/article/model/store/useNewsEditorStore";
+import {
+  useGetArticlesPageQuery,
+  type IArticleDTO,
+} from "@/shared/api/requests/articles";
+import { globalVariables } from "@globalVariables";
 
 import s from "./News.module.scss";
 import { AddNewsBtn } from "./components/AddNewsBtn";
@@ -13,15 +19,33 @@ export const News = () => {
 
   useEffect(() => {
     clearFields();
+  }, [clearFields]);
+
+  const query = useGetArticlesPageQuery({
+    skip: 0,
+    limit: globalVariables.limit,
   });
+
+  const articles: IArticleDTO[] = query.data ?? [];
+  const isInitialLoading = query.isLoading && !query.data;
 
   return (
     <section className={s.news}>
       <header className={s.header}>
         <AddNewsBtn />
-        <ButtonContainer />
+        <ButtonContainer
+          hasNextPage={query.hasNextPage}
+          isFetchingNextPage={query.isFetchingNextPage}
+          isInitialLoading={isInitialLoading}
+          onLoadMore={() => {
+            void query.fetchNextPage();
+          }}
+        />
       </header>
-      <NewsContainer />
+      <NewsContainer
+        articles={articles}
+        isLoading={isInitialLoading}
+      />
     </section>
   );
 };

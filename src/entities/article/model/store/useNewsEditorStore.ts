@@ -1,11 +1,11 @@
-import { INewsFiles } from '@/entities/article/api/types/News'
+import { type IArticleFileDTO } from '@/shared/api/requests/articles'
 import { create } from 'zustand'
 
 interface NewsEditorState {
     title: string
     body: string
     video: string
-    files: INewsFiles[]
+    files: IArticleFileDTO[]
     loading: boolean
     loadingFile: boolean
     fetchNews: boolean
@@ -13,14 +13,19 @@ interface NewsEditorState {
     newsResponseModalContent: string
 
     setField: (name: string, value: string) => void
-    setFiles: (files: INewsFiles[]) => void
+    setFiles: (files: IArticleFileDTO[]) => void
     setLoading: (v: boolean) => void
     setLoadingFile: (v: boolean) => void
     setFetchNews: (v: boolean) => void
     showModal: (content: string) => void
     closeModal: () => void
     clearFields: () => void
-    loadFields: (fields: { title: string; body: string; video: string; files: INewsFiles[] }) => void
+    loadFields: (fields: {
+        title: string
+        body: string
+        video: string
+        files: IArticleFileDTO[]
+    }) => void
 }
 
 export const useNewsEditorStore = create<NewsEditorState>((set) => ({

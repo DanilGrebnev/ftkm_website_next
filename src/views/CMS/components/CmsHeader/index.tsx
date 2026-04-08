@@ -1,6 +1,6 @@
 'use client'
 
-import { logout } from '@/entities/auth/api/actions/auth'
+import { useLogoutUserMutation } from '@/shared/api/requests/users'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -10,12 +10,16 @@ import s from './CmsHeader.module.scss'
 
 export const CmsHeader = () => {
     const router = useRouter()
+    const logoutMutation = useLogoutUserMutation()
 
     const handleLogout = useCallback(async () => {
-        await logout()
-        router.refresh()
-        router.push('/login')
-    }, [router])
+        try {
+            await logoutMutation.mutateAsync()
+        } finally {
+            router.refresh()
+            router.push('/login')
+        }
+    }, [logoutMutation, router])
 
     return (
         <header className={s.bar}>

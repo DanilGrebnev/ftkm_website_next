@@ -13,11 +13,11 @@ import {
 } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
 
-import type { IAdmissionItem } from '@/entities/admission/api/types/AdmissionItem'
 import {
-    getAdmissionSettings,
-    saveAdmissionSettings,
-} from '@/entities/admission/api/actions/admission'
+    useAdmissionSettingsQuery,
+    useSaveAdmissionSettingsMutation,
+    type IAdmissionItem,
+} from '@/shared/api/requests/admission'
 
 import s from './AdmissionEditor.module.scss'
 
@@ -29,28 +29,28 @@ const emptyRow = (): IAdmissionItem => ({
 })
 
 export const AdmissionEditor = () => {
-    const [items, setItems] = useState<IAdmissionItem[]>([])
-    const [loading, setLoading] = useState(true)
-    const [saving, setSaving] = useState(false)
+    const [items, setItems] = useState<IAdmissionItem[]>([emptyRow()])
     const [message, setMessage] = useState<string | null>(null)
 
-    const load = useCallback(async () => {
-        setLoading(true)
-        setMessage(null)
-        try {
-            const { items: data } = await getAdmissionSettings()
-            setItems(data.length ? data : [emptyRow()])
-        } catch {
-            setMessage('Не удалось загрузить данные')
-            setItems([emptyRow()])
-        } finally {
-            setLoading(false)
-        }
-    }, [])
+    const admissionQuery = useAdmissionSettingsQuery()
+    const saveAdmissionMutation = useSaveAdmissionSettingsMutation()
 
     useEffect(() => {
-        load()
-    }, [load])
+        if (!admissionQuery.data) return
+
+        const nextItems = admissionQuery.data.items.length
+            ? admissionQuery.data.items
+            : [emptyRow()]
+
+        setItems(nextItems)
+    }, [admissionQuery.data])
+
+    useEffect(() => {
+        if (!admissionQuery.isError) return
+
+        setMessage('Не удалось загрузить данные')
+        setItems([emptyRow()])
+    }, [admissionQuery.isError])
 
     const updateRow = (
         index: number,
@@ -71,11 +71,10 @@ export const AdmissionEditor = () => {
         )
     }
 
-    const handleSave = async () => {
-        setSaving(true)
+    const handleSave = useCallback(async () => {
         setMessage(null)
         try {
-            const result = await saveAdmissionSettings({ items })
+            const result = await saveAdmissionMutation.mutateAsync({ items })
             if (!result.ok) {
                 setMessage(
                     result.error === 'Unauthorized'
@@ -85,16 +84,16 @@ export const AdmissionEditor = () => {
                 return
             }
             setMessage('Сохранено')
-            const { items: fresh } = await getAdmissionSettings()
-            setItems(fresh.length ? fresh : [emptyRow()])
+            const freshItems = result.items.length
+                ? result.items
+                : [emptyRow()]
+            setItems(freshItems)
         } catch {
             setMessage('Ошибка сохранения')
-        } finally {
-            setSaving(false)
         }
-    }
+    }, [items, saveAdmissionMutation])
 
-    if (loading) {
+    if (admissionQuery.isLoading) {
         return (
             <div className={s.center}>
                 <CircularProgress />
@@ -221,9 +220,9 @@ export const AdmissionEditor = () => {
                     type='button'
                     variant='contained'
                     onClick={handleSave}
-                    disabled={saving}
+                    disabled={saveAdmissionMutation.isPending}
                 >
-                    {saving ? 'Сохранение…' : 'Сохранить'}
+                    {saveAdmissionMutation.isPending ? 'Сохранение…' : 'Сохранить'}
                 </Button>
             </Stack>
 

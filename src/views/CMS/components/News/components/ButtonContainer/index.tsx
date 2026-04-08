@@ -1,27 +1,32 @@
 'use client'
 
 import { LoadingButton } from '@UI/LoadingButton'
-import { useNewsListStore } from '@/entities/article/model/store/useNewsListStore'
-import { useGetNews } from '@/entities/article/model/hooks/useGetNews'
-import { useMoreNewsComplete } from '@/entities/article/model/hooks/useMoreNewsComplete'
 
 import s from './s.module.scss'
 
-export const ButtonContainer = () => {
-    const { getNews } = useGetNews()
-    const { isCompleteMoreNews } = useMoreNewsComplete()
-    const loading = useNewsListStore((s) => s.loading)
+interface ButtonContainerProps {
+    hasNextPage?: boolean
+    isFetchingNextPage: boolean
+    isInitialLoading: boolean
+    onLoadMore: () => void
+}
 
-    const text = isCompleteMoreNews ? 'Это все новости' : 'загрузить ещё'
+export const ButtonContainer = ({
+    hasNextPage,
+    isFetchingNextPage,
+    isInitialLoading,
+    onLoadMore,
+}: ButtonContainerProps) => {
+    const text = hasNextPage ? 'Загрузить ещё' : 'Это все новости'
 
     return (
         <div className={s.btnContainer}>
             <LoadingButton
                 text={text}
                 size='medium'
-                disabled={loading || isCompleteMoreNews}
-                loading={loading}
-                onClick={() => getNews()}
+                disabled={isInitialLoading || !hasNextPage || isFetchingNextPage}
+                loading={isFetchingNextPage}
+                onClick={onLoadMore}
             />
         </div>
     )

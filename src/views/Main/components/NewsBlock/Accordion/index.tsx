@@ -1,5 +1,5 @@
 import { AccordionBlock } from '@UI/Accordion'
-import { INewsItem } from '@/entities/article/api/types/News'
+import { type IArticleDTO } from '@/shared/api/requests/articles'
 import { FC, memo } from 'react'
 
 import { LazyNewsList } from '../NewsList/LazyNewsList'
@@ -8,7 +8,7 @@ import s from './s.module.scss'
 interface IAccordion {
     className?: string
     newsListClassName?: string
-    lastNews?: INewsItem[]
+    lastNews?: IArticleDTO[]
 }
 
 const Accordion: FC<IAccordion> = memo(props => {

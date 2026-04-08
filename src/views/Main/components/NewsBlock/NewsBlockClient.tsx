@@ -3,7 +3,7 @@
 import { useGetWindowWidth } from "@hooks/useGetWindowWidth";
 import Container from "@mui/material/Container";
 
-import type { INewsItem } from "@/entities/article/api/types/News";
+import type { IArticleDTO } from "@/shared/api/requests/articles";
 
 import { LazyAccordion } from "./Accordion/LazyAccordion";
 import { ButtonArchive } from "./ButtonArchive";
@@ -11,7 +11,7 @@ import { LazyNewsList } from "./NewsList/LazyNewsList";
 import s from "./style.module.scss";
 
 interface NewsBlockClientProps {
-  lastNews: INewsItem[];
+  lastNews: IArticleDTO[];
 }
 
 export function NewsBlockClient({ lastNews }: NewsBlockClientProps) {

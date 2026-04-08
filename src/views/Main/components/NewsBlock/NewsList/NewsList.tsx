@@ -1,13 +1,13 @@
 'use client'
 
-import { INewsItem } from '@/entities/article/api/types/News'
+import { type IArticleDTO } from '@/shared/api/requests/articles'
 import { FC } from 'react'
 import { m } from 'framer-motion'
 import { NewsItem } from './NewsItem'
 
 interface INewsList {
     className?: string
-    lastNews?: INewsItem[]
+    lastNews?: IArticleDTO[]
 }
 
 const NewsList: FC<INewsList> = (props) => {

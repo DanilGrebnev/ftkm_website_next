@@ -1,11 +1,11 @@
 import { formatNewsCreatedDate } from '@/entities/article/model/utils/formatNewsCreatedDate'
-import { INewsItem } from '@/entities/article/api/types/News'
+import { type IArticleDTO } from '@/shared/api/requests/articles'
 import Link from 'next/link'
 import { FC, memo } from 'react'
 
 import s from './s.module.scss'
 
-export const NewsItem: FC<INewsItem> = memo((props) => {
+export const NewsItem: FC<IArticleDTO> = memo((props) => {
     const { _id, title, createdDate } = props
 
     return (

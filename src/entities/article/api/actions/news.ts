@@ -4,7 +4,7 @@ import { dbConnect } from '@/shared/api/mongoClient'
 import { withServerErrorLog } from '@/shared/lib/logServerError'
 import { NewsModel } from '@/entities/article/api/models/news'
 import { revalidatePath } from 'next/cache'
-import { getSession } from '@/entities/auth/api/actions/auth'
+import { getSessionServerAction } from '@/shared/api/requests/users'
 
 export interface NewsFilters {
     title?: string
@@ -131,7 +131,8 @@ export async function createNews(body: {
     video?: string
 }) {
     return withServerErrorLog('Создание новости', async () => {
-        const session = await getSession()
+        const session = await getSessionServerAction()
+
         if (!session) throw new Error('Unauthorized')
 
         await dbConnect()
@@ -157,7 +158,7 @@ export async function updateNews(
     body: { title: string; body: string; video?: string }
 ) {
     return withServerErrorLog(`Обновление новости (${id})`, async () => {
-        const session = await getSession()
+        const session = await getSessionServerAction()
         if (!session) throw new Error('Unauthorized')
 
         await dbConnect()
@@ -183,7 +184,7 @@ export async function updateNews(
 
 export async function deleteNews(id: string) {
     return withServerErrorLog(`Удаление новости (${id})`, async () => {
-        const session = await getSession()
+        const session = await getSessionServerAction()
         if (!session) throw new Error('Unauthorized')
 
         await dbConnect()

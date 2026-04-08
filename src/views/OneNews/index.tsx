@@ -3,9 +3,8 @@
 import { formatNewsCreatedDate } from '@/entities/article/model/utils/formatNewsCreatedDate'
 import { NewsCardSkeleton } from '@/entities/article/ui/NewsCardSkeleton/NewsCardSekelton'
 import { TextareaView } from '@/shared/ui/ArticleBodyPreview/ArticleBodyPreview'
-import { getNewsById } from '@/entities/article/api/actions/news'
 import { useSetDocumentTitle } from '@/shared/hooks/useSetDocumentTitle'
-import { INewsItem } from '@/entities/article/api/types/News'
+import { getArticleByIdServerAction, type IArticleDTO } from '@/shared/api/requests/articles'
 import { Button, Container } from '@mui/material'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
@@ -18,7 +17,7 @@ import s from './style.module.scss'
 const OneNews = () => {
     const params = useParams()
     const _id = params?._id as string | undefined
-    const [news, setNews] = useState<INewsItem>()
+    const [news, setNews] = useState<IArticleDTO>()
     const [loading, setLoading] = useState(true)
 
     const router = useRouter()
@@ -28,10 +27,10 @@ const OneNews = () => {
     useEffect(() => {
         if (!_id) return
         setLoading(true)
-        getNewsById(_id)
-            .then((data) => {
-                if (data) {
-                    setNews(data as any)
+        getArticleByIdServerAction(_id)
+            .then((response) => {
+                if (response.article) {
+                    setNews(response.article)
                 } else {
                     router.push('/news')
                 }

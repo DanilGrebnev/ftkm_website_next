@@ -1,7 +1,9 @@
 'use client'
 
-import { getLastNews } from '@/entities/article/api/actions/news'
-import type { INewsItem } from '@/entities/article/api/types/News'
+import {
+  getLastArticlesServerAction,
+  type IArticleDTO,
+} from '@/shared/api/requests/articles'
 import { NewsBlockClient } from '@/views/Main/components/NewsBlock/NewsBlockClient'
 import { useEffect, useState } from 'react'
 
@@ -13,16 +15,16 @@ type Phase = 'loading' | 'ok' | 'degraded'
 
 export function HomeNewsWidget() {
   const [phase, setPhase] = useState<Phase>('loading')
-  const [items, setItems] = useState<INewsItem[]>([])
+  const [items, setItems] = useState<IArticleDTO[]>([])
 
   useEffect(() => {
     let cancelled = false
 
     ;(async () => {
       try {
-        const result = await getLastNews(MAIN_NEWS_PREVIEW_LIMIT)
+        const result = await getLastArticlesServerAction(MAIN_NEWS_PREVIEW_LIMIT)
         if (cancelled) return
-        const data = result.data as INewsItem[]
+        const data = result.data
         if (!data?.length) {
           setPhase('degraded')
           return

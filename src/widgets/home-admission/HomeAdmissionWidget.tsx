@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 
-import { getAdmissionSettingsForPublicPage } from "@/entities/admission/api/actions/admission";
+import { getAdmissionSettingsPublicServerAction } from "@/shared/api/requests/admission";
 import { Admission } from "@/entities/admission/ui/Admission";
 
 async function AdmissionStream() {
-  const { items } = await getAdmissionSettingsForPublicPage();
+  const { items } = await getAdmissionSettingsPublicServerAction();
   return <Admission items={items} />;
 }
 

@@ -1,10 +1,17 @@
 import { LoadingButton } from '@UI/LoadingButton'
-import { useGetNewsQuery } from '@/entities/article/api/actions/newsApiHooks'
+
+import {
+    useGetArticlesPageQuery,
+} from '@/shared/api/requests/articles'
+import { globalVariables } from '@globalVariables'
 
 import s from './s.module.scss'
 
 export const ButtonContainer = () => {
-    const { hasNextPage, isFetchingNextPage, fetchNextPage } = useGetNewsQuery()
+    const { hasNextPage, isFetchingNextPage, fetchNextPage } = useGetArticlesPageQuery({
+        skip: 0,
+        limit: globalVariables.limit,
+    })
 
     const text = hasNextPage ? 'Загрузить ещё' : 'Это все новости'
 

@@ -1,30 +1,32 @@
 'use client'
 
-import { getLastNews } from '@/entities/article/api/actions/news'
+import { useEffect, useState } from 'react'
+
+import {
+    useGetLastArticlesQuery,
+    type IArticleDTO,
+} from '@/shared/api/requests/articles'
 import { useGetWindowWidth } from '@hooks/useGetWindowWidth'
 import { useShowIfIsView } from '@hooks/useShowIfIsView'
 import Container from '@mui/material/Container'
-import { useEffect, useState } from 'react'
 
 import { LazyAccordion } from './Accordion/LazyAccordion'
 import { ButtonArchive } from './ButtonArchive'
 import { LazyNewsList } from './NewsList/LazyNewsList'
 import s from './style.module.scss'
-import { INewsItem } from '@/entities/article/api/types/News'
 
 const MAIN_NEWS_PREVIEW_LIMIT = 8
 
 export const NewsBlock = () => {
-    const [lastNews, setLastNews] = useState<INewsItem[]>([])
+    const [lastNews, setLastNews] = useState<IArticleDTO[]>([])
     const { ref, active } = useShowIfIsView({ threshold: 0.3 })
     const { currentWidth } = useGetWindowWidth()
+    const { data } = useGetLastArticlesQuery({ amount: MAIN_NEWS_PREVIEW_LIMIT })
 
     useEffect(() => {
-        if (!active) return
-        getLastNews(MAIN_NEWS_PREVIEW_LIMIT).then((result) => {
-            setLastNews(result.data as any)
-        })
-    }, [active])
+        if (!active || !data) return
+        setLastNews(data)
+    }, [active, data])
 
     return (
         <Container

@@ -1,6 +1,7 @@
 import { LoadingButton } from '@UI/LoadingButton'
 import { ModalComponent } from '@UI/ModalComponent'
-import { useFetchLogin } from '@/entities/auth/model/hooks/useFetchLogin'
+import { useLoginUserMutation } from '@/shared/api/requests/users'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
@@ -10,7 +11,9 @@ interface ILoginButton {
 }
 
 export const SubmitBtn: React.FC<ILoginButton> = ({ loginRef, passRef }) => {
-    const { fetchLogin, isLoading, error } = useFetchLogin()
+    const router = useRouter()
+    const loginMutation = useLoginUserMutation()
+    const [error, setError] = useState(false)
 
     const [modal, setModal] = useState<HTMLDivElement | null>(null)
 
@@ -18,16 +21,38 @@ export const SubmitBtn: React.FC<ILoginButton> = ({ loginRef, passRef }) => {
         setModal(document.getElementById('modal_block') as HTMLDivElement)
     }, [])
 
+    useEffect(() => {
+        if (!error) return
+        const timer = setTimeout(() => setError(false), 5000)
+        return () => clearTimeout(timer)
+    }, [error])
+
+    const handleSubmit = async () => {
+        setError(false)
+        const login = loginRef?.current?.value?.trim() ?? ''
+        const password = passRef?.current?.value ?? ''
+        if (!login || !password) {
+            setError(true)
+            return
+        }
+
+        try {
+            const result = await loginMutation.mutateAsync({ login, password })
+            if (result.error) {
+                setError(true)
+                return
+            }
+            router.push('/CMS')
+        } catch {
+            setError(true)
+        }
+    }
+
     return (
         <>
             <LoadingButton
-                onClick={() =>
-                    fetchLogin({
-                        login: loginRef?.current?.value as string,
-                        password: passRef?.current?.value as string,
-                    })
-                }
-                loading={isLoading}
+                onClick={handleSubmit}
+                loading={loginMutation.isPending}
                 text="войти"
             />
             {modal &&

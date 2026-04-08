@@ -1,14 +1,15 @@
 'use client'
 
-import { INewsFiles } from '@/entities/article/api/types/News'
 import { createHrefToFile } from '@/shared/utils/createHrefToFile'
+import {
+    deleteArticleFileServerAction,
+    type IArticleFileDTO,
+} from '@/shared/api/requests/articles'
 import { selectFileExtensionIcon } from '@/shared/utils/selectFileExtensionIcon'
 import { sliceExtensionInString } from '@/shared/utils/sliceExtensionString'
-import { deleteNewsFile } from '@/entities/article/api/actions/files'
 import { useNewsEditorStore } from '@/entities/article/model/store/useNewsEditorStore'
 import dynamic from 'next/dynamic'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
-
 const AlertDialog = dynamic(
     () => import('@UI/AlertDialog').then(mod => ({ default: mod.AlertDialog })),
     { ssr: false }
@@ -20,7 +21,7 @@ import { type FC, memo, useState } from 'react'
 
 import s from './FileItem.module.scss'
 
-interface IFileItemProps extends INewsFiles {
+interface IFileItemProps extends IArticleFileDTO {
     className?: string
 }
 
@@ -33,8 +34,11 @@ export const FileItem: FC<IFileItemProps> = memo((props) => {
     const handleDeleteFile = async () => {
         setLoadingFile(true)
         try {
-            const updatedFiles = await deleteNewsFile({ newsId, fileName: name })
-            setFiles(updatedFiles as any)
+            const updatedFiles = await deleteArticleFileServerAction({
+                articleId: newsId,
+                fileName: name,
+            })
+            setFiles(updatedFiles.files)
         } catch {
             alert('Ошибка удаления файла')
         } finally {

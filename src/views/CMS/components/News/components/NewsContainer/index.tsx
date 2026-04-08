@@ -1,32 +1,36 @@
 'use client'
 
 import { ErrorBoundary } from '@/app/Providers'
-import { useNewsListStore } from '@/entities/article/model/store/useNewsListStore'
-import { useGetNews } from '@/entities/article/model/hooks/useGetNews'
-import { useEffect } from 'react'
+import { type IArticleDTO } from '@/shared/api/requests/articles'
+import { type FC } from 'react'
 
 import { NewsItem } from '../NewsItem'
 import s from './s.module.scss'
 
-export const NewsContainer = () => {
-    const news = useNewsListStore((s) => s.news)
-    const { getNews } = useGetNews()
+interface NewsContainerProps {
+    articles: IArticleDTO[]
+    isLoading: boolean
+}
 
-    const clearList = useNewsListStore((s) => s.clearList)
-
-    useEffect(() => {
-        clearList()
-        getNews({ defaultSkip: 0 })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+export const NewsContainer: FC<NewsContainerProps> = ({
+    articles,
+    isLoading,
+}) => {
+    const showSkeleton = isLoading && !articles.length
 
     return (
         <section className={s.newsContainer}>
-            {news.map((item) => (
-                <ErrorBoundary key={item._id}>
-                    <NewsItem {...item} />
-                </ErrorBoundary>
-            ))}
+            {showSkeleton ? (
+                <div className={s.placeholder}>Загрузка новостей...</div>
+            ) : articles.length === 0 ? (
+                <div className={s.placeholder}>Новости отсутствуют</div>
+            ) : (
+                articles.map((item) => (
+                    <ErrorBoundary key={item._id}>
+                        <NewsItem {...item} />
+                    </ErrorBoundary>
+                ))
+            )}
         </section>
     )
 }

@@ -4,7 +4,8 @@ import { dbConnect } from '@/shared/api/mongoClient'
 import { withServerErrorLog } from '@/shared/lib/logServerError'
 import { NewsModel } from '@/entities/article/api/models/news'
 import { revalidatePath } from 'next/cache'
-import { getSession } from '@/entities/auth/api/actions/auth'
+import { getSessionServerAction } from '@/shared/api/requests/users'
+
 import path from 'path'
 import fs from 'fs/promises'
 
@@ -23,7 +24,8 @@ function generateFileName(originalName: string): string {
 
 export async function uploadNewsFile(newsId: string, formData: FormData) {
     return withServerErrorLog(`Загрузка файла к новости (${newsId})`, async () => {
-        const session = await getSession()
+        const session = await getSessionServerAction()
+
         if (!session) throw new Error('Unauthorized')
 
         await dbConnect()
@@ -73,7 +75,7 @@ export async function deleteNewsFile({
     fileName: string
 }) {
     return withServerErrorLog(`Удаление файла новости (${newsId}, ${fileName})`, async () => {
-        const session = await getSession()
+        const session = await getSessionServerAction()
         if (!session) throw new Error('Unauthorized')
 
         await dbConnect()

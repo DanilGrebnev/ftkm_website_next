@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { cache } from "react";
 
-import { getNewsMetaById } from "@/entities/article/api/actions/news";
+import { getArticleMetaServerAction } from "@/shared/api/requests/articles";
 import {
   excerptFromNewsBody,
   getMetadataBaseUrl,
@@ -12,13 +12,13 @@ import { NewsArticleJsonLd } from "@/shared/seo/JsonLd";
 
 import { NewsArticleRouteClient } from "./NewsArticleRouteClient";
 
-const getNewsMeta = cache(getNewsMetaById);
+const getArticleMeta = cache(getArticleMetaServerAction);
 
 type Props = { params: Promise<{ _id: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { _id } = await params;
-  const news = await getNewsMeta(_id);
+  const news = await getArticleMeta(_id);
 
   if (!news) {
     return {
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function OneNewsPage({ params }: Props) {
   const { _id } = await params;
-  const news = await getNewsMeta(_id);
+  const news = await getArticleMeta(_id);
 
   return (
     <>

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { INewsFiles } from '@/entities/article/api/types/News'
+import { type IArticleFileDTO } from '@/shared/api/requests/articles'
 import clsx from 'clsx'
 import { type FC } from 'react'
 
@@ -8,7 +8,7 @@ import s from './FileList.module.scss'
 
 interface IFileListProps {
     className?: string
-    fileList?: INewsFiles[]
+    fileList?: IArticleFileDTO[]
 }
 
 export const FileList: FC<IFileListProps> = (props) => {

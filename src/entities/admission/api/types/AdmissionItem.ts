@@ -1,6 +1,1 @@
-export interface IAdmissionItem {
-    direction: string
-    budgetPlaces: number
-    passingScore: string
-    additionalInformation?: string
-}
+export { type IAdmissionItem } from '@/shared/api/requests/admission'

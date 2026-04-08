@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { INewsFiles } from '@/entities/article/api/types/News'
+import { type IArticleFileDTO } from '@/shared/api/requests/articles'
 import { createHrefToFile } from '@/shared/utils/createHrefToFile'
 import { sliceExtensionInString } from '@/shared/utils/sliceExtensionString'
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded'
@@ -9,7 +9,7 @@ import { type FC, useRef } from 'react'
 import { FileIcon } from '../FileIcon/FileIcon'
 import s from './FileListItem.module.scss'
 
-interface IFileListItemProps extends INewsFiles {}
+interface IFileListItemProps extends IArticleFileDTO {}
 
 export const FileListItem: FC<IFileListItemProps> = (props) => {
     const { extension, name } = props

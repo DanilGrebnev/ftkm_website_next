@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getAllNewsIdsForSitemap } from "@/entities/article/api/actions/news";
+import { getAllArticleIdsServerAction } from "@/shared/api/requests/articles";
 import { getMetadataBaseUrl } from "@/shared/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -31,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let newsEntries: MetadataRoute.Sitemap = [];
   try {
-    const ids = await getAllNewsIdsForSitemap();
+    const ids = await getAllArticleIdsServerAction();
     newsEntries = ids.map((n) => ({
       url: `${origin}/news/${n.id}`,
       lastModified: n.lastModified,

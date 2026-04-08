@@ -12,6 +12,12 @@
     padding: 10px;
 }
 
+.placeholder {
+    padding: adaptiveSize(40, 20);
+    text-align: center;
+    color: var(--light-gray, #7a7a7a);
+}
+
 @media screen and (max-width: 900px) {
     .newsContainer {
         --minW: 250px;

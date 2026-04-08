@@ -17,9 +17,7 @@ export async function register() {
 
         try {
             const { dbConnect } = await import('@/shared/api/mongoClient')
-            const { UserModel } = await import(
-                '@/entities/auth/api/models/user'
-            )
+            const { UserModel } = await import('@/shared/api/requests/users/schemas/UserModel')
 
             await dbConnect()
 

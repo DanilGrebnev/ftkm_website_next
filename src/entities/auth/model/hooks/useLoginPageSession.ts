@@ -1,24 +1,36 @@
-import { getSession, logout } from '@/entities/auth/api/actions/auth'
+import {
+    useLogoutUserMutation,
+    useUserSessionQuery,
+} from '@/shared/api/requests/users'
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 
 export type LoginPageSessionPhase = 'loading' | 'guest' | 'authed'
 
 export function useLoginPageSession() {
     const router = useRouter()
-    const [phase, setPhase] = useState<LoginPageSessionPhase>('loading')
+    const sessionQuery = useUserSessionQuery()
+    const logoutMutation = useLogoutUserMutation()
 
-    useEffect(() => {
-        getSession().then((session) => {
-            setPhase(session ? 'authed' : 'guest')
-        })
-    }, [])
+    const phase: LoginPageSessionPhase = useMemo(() => {
+        if (sessionQuery.isLoading) {
+            return 'loading'
+        }
+
+        if (sessionQuery.data) {
+            return 'authed'
+        }
+
+        return 'guest'
+    }, [sessionQuery.data, sessionQuery.isLoading])
 
     const doLogout = useCallback(async () => {
-        await logout()
-        router.refresh()
-        setPhase('guest')
-    }, [router])
+        try {
+            await logoutMutation.mutateAsync()
+        } finally {
+            router.refresh()
+        }
+    }, [logoutMutation, router])
 
     return { phase, doLogout }
 }
