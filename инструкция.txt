@@ -32,14 +32,14 @@
 ==================================================
 
 На своём ПК в папке проекта:
-
+1)
   yarn install
   yarn build
 
   После успешной сборки перенесите на сервер 
   папки: .next, public, .env, Dockerfile, Dockerfile.prebuilt
 
-Потом:
+2):
   docker compose --profile prebuilt up -d --build
 
 Сайт снова: http://localhost:и_ваш_порт
