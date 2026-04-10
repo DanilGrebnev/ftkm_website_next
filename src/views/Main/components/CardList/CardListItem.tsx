@@ -8,7 +8,7 @@ export const CardItem = React.memo(({ a, p, span }: TCardItem) => {
             <img
                 loading='lazy'
                 alt='vstu-logo'
-                src='images/Logo_vstu.webp'
+                src='/images/Logo_vstu.webp'
             />
             <p>
                 {p} {span ? <span>{span}</span> : ''}

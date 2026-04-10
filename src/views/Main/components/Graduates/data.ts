@@ -1,7 +1,7 @@
 export const people = [
     {
         alt: 'Кабанов В.А.',
-        src: '/images/Кабанов.webp',
+        src: '/images/kabanov.webp',
         description: ` <b>Кабанов В.А.</b> – про&shy;рек&shy;тор по
                         учеб&shy;ной ра&shy;бо&shy;те ВолгГТУ,
                         экс-&shy;пер&shy;вый за&shy;мес&shy;ти&shy;тель
@@ -12,7 +12,7 @@ export const people = [
     },
     {
         alt: 'Кидалов Н.А.',
-        src: '/images/Кидалов.webp',
+        src: '/images/kidalov_graduate.webp',
         description: `<b>Кидалов Н.А.</b> – профес&shy;сор, док&shy;тор
                         тех&shy;ни&shy;чес&shy;ких на&shy;ук,
                         заве&shy;дую&shy;щий ка&shy;фед&shy;рой «МиТЛП»,
@@ -23,7 +23,7 @@ export const people = [
     },
     {
         alt: 'Конин А.Н.',
-        src: '/images/Конин.webp',
+        src: '/images/konin.webp',
         description: `<b>Конин А.Н.</b> –
                         ге&shy;не&shy;рал-лей&shy;те&shy;нант,
                         за&shy;мес&shy;ти&shy;тель на&shy;чаль&shy;ни&shy;ка
@@ -31,7 +31,7 @@ export const people = [
     },
     {
         alt: 'Зюбан Н.А.',
-        src: '/images/Зюбан.webp',
+        src: '/images/zyuban.webp',
         description: ` <b>Зюбан Н.А.</b> – про&shy;фес&shy;сор, док&shy;тор
                         тех&shy;ни&shy;чес&shy;ких наук, по&shy;чёт&shy;ный
                         ра&shy;бот&shy;ник выс&shy;ше&shy;го

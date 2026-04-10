@@ -25,7 +25,7 @@ export const Footer: React.FC<IFooter> = ({ style }) => {
                 >
                     <ImgComponent
                         alt="ВолгГТУ сайт МиТЛП"
-                        src="images/Logo_vstu.webp"
+                        src="/images/Logo_vstu.webp"
                     />
                 </Link>
                 <p className={s.dept}>

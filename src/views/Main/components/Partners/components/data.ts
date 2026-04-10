@@ -1,47 +1,47 @@
 export const data = [
     {
-        src: 'images/русал.webp',
+        src: '/images/rusal.webp',
         alt: 'Завод "Русал"',
         title: 'Завод "Русал"',
     },
     {
-        src: 'images/nornikel.webp',
+        src: '/images/nornikel.webp',
         alt: 'Завод НОРНИКЕЛЬ',
         title: 'Завод НОРНИКЕЛЬ',
     },
     {
-        src: 'images/нефтемаш.webp',
+        src: '/images/neftemash.webp',
         alt: 'Завод "Волгоград Нефтемаш"',
         title: 'Завод "Волгоград Нефтемаш"',
     },
     {
-        src: 'images/волжский_трубный.webp',
+        src: '/images/volzhsky_trubny.webp',
         alt: 'Волжский трубный завод',
         title: 'Волжский трубный завод',
     },
     {
-        src: 'images/красный_октябрь.webp',
+        src: '/images/krasny_oktyabr.webp',
         alt: 'Завод "Красный Октябрь"',
         title: 'Завод "Красный Октябрь"',
     },
     {
-        src: 'images/вкм_сталь.webp',
+        src: '/images/vkm_stal.webp',
         alt: 'ВКМ "СТАЛЬ"',
         title: 'ВКМ "СТАЛЬ"',
     },
     {
-        src: 'images/литейно_механический_завод.webp',
+        src: '/images/liteyno_mekhanicheskiy_zavod.webp',
         alt: 'Литейно-механический завод',
         title: 'Литейно-механический завод',
     },
 
     {
-        src: 'images/magnit-steel-cambinat.webp',
+        src: '/images/magnit-steel-cambinat.webp',
         alt: 'Магнитагорский металлургический комбинат',
         title: 'Магнитагорский металлургический комбинат',
     },
     {
-        src: 'images/kamaz.webp',
+        src: '/images/kamaz.webp',
         alt: 'Завод "КАМАЗ"',
         title: 'Завод "КАМАЗ"',
     },

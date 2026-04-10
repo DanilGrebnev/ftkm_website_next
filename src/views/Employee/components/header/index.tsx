@@ -8,7 +8,7 @@ export const Header = () => {
             <div className={s.header}>
                 <img
                     alt='изображение'
-                    src='images/kidalov.webp'
+                    src='/images/kidalov.webp'
                 />
                 <div className={s.description}>
                     <TextContent

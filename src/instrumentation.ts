@@ -21,16 +21,15 @@ export async function register() {
 
             await dbConnect()
 
-            const existing = await UserModel.findOne({ login }).exec()
+            const result = await UserModel.findOneAndUpdate(
+                { login },
+                { login, password },
+                { upsert: true, new: true }
+            ).exec()
 
-            if (existing) {
-                console.log(`[seed] User "${login}" already exists, skipping`)
-                return
+            if (result) {
+                console.log(`[seed] Admin user "${login}" synced (upsert)`)
             }
-
-            await UserModel.deleteMany({})
-            await UserModel.create({ login, password })
-            console.log(`[seed] Created admin user "${login}"`)
         } catch (err) {
             logServerError('Сидирование администратора при старте', err)
         }

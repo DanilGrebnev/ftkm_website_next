@@ -4,5 +4,5 @@ export const onErrorLoadImage = (
     errorEvent: SyntheticEvent<HTMLImageElement, Event>
 ) => {
     const target = errorEvent.target as HTMLImageElement
-    target.src = 'images/Logo_ФТКМ.png'
+    target.src = '/images/Logo_vstu.webp'
 }
