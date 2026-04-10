@@ -54,6 +54,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: adaptiveSize(36, 20);
     align-items: start;
+
+    @media screen and (max-width: 920px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .video1,
@@ -76,8 +80,7 @@
   }
 
   @media screen and (max-width: 920px) {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 }
@@ -93,11 +96,4 @@
 
 .TextAndVideo2:before {
   top: 0;
-}
-
-@media screen and (max-width: 1000px) {
-  .TextAndVideo2 {
-    display: flex !important;
-    flex-direction: column;
-  }
 }
