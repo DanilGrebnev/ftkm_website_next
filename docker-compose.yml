@@ -2,8 +2,8 @@ name: ftkm
 
 services:
   mongo:
-    image: mongo:7
-    container_name: ftkm-mongo
+    image: mongo:4.4
+    container_name: mongodb_4.4v
     restart: unless-stopped
     env_file:
       - .env
@@ -12,7 +12,11 @@ services:
     volumes:
       - mongo_data:/data/db
     healthcheck:
-      test: ["CMD-SHELL", "mongosh --quiet --eval 'db.adminCommand({ ping: 1 }).ok' localhost:27017/test | grep 1 || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "mongo --quiet --eval 'db.adminCommand({ ping: 1 }).ok' localhost:27017/test | grep 1 || exit 1",
+        ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -43,7 +47,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "node -e \"fetch('http://127.0.0.1:' + (process.env.PORT || 3000)).then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))\""
+          'node -e "fetch(''http://127.0.0.1:'' + (process.env.PORT || 3000)).then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"',
         ]
       interval: 30s
       timeout: 10s
@@ -75,7 +79,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "node -e \"fetch('http://127.0.0.1:' + (process.env.PORT || 3000)).then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))\""
+          'node -e "fetch(''http://127.0.0.1:'' + (process.env.PORT || 3000)).then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"',
         ]
       interval: 30s
       timeout: 10s

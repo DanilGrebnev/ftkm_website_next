@@ -13,7 +13,7 @@ export function useGetLastArticlesQuery(params: IGetLastArticlesRequestDTO = {})
   return useQuery<IArticleDTO[]>({
     queryKey: ['articles', 'last', amount],
     queryFn: async () => {
-      const response: IGetLastArticlesResponseDTO =
+      const response =
         await getLastArticlesServerAction(amount)
       return response.data
     },

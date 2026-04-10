@@ -58,6 +58,13 @@
     min-width: min(100%, 520px);
     max-width: 640px;
     align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .videoNote {
+    min-width: 0;
   }
 }
 

@@ -1,6 +1,7 @@
 import { Container } from "@mui/material";
 
 import { LazyWhenVisible } from "@UI/LazyWhenVisible";
+import { SourceAttributionNote } from "@/shared/ui/SourceAttributionNote";
 import { VideoLazySkeleton } from "@/shared/ui/VideoLazySkeleton";
 
 import { LazyPutinVideo } from "./LazyPutinVideo";
@@ -37,6 +38,12 @@ export const TextAndVideo1 = () => {
         >
           <LazyPutinVideo />
         </LazyWhenVisible>
+        <SourceAttributionNote
+          className={style.videoNote}
+          url="http://kremlin.ru/events/president/news/57999"
+        >
+          материал взят из открытых источников:
+        </SourceAttributionNote>
       </div>
     </Container>
   );

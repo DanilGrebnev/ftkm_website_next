@@ -1,0 +1,36 @@
+.note {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+  flex-wrap: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.note:hover,
+.note:focus-visible {
+  color: #1e5fff;
+}
+
+.prefix {
+  flex: 0 0 auto;
+}
+
+.linkWrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-style: normal;
+  text-decoration: underline;
+}
+
+.ellipsis {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
